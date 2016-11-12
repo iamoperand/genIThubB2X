@@ -11,12 +11,14 @@
 |
 */
 
+
+
+Route::group(['middleware' => ['web']], function(){
+
 Route::get('/', function () {
-
     return view('login');
-
 });
-Route::post('submit',[
+Route::post('enquiry',[
 	'uses'=>'MainController@login',
 	'as'=> 'submit'
   ]);
@@ -25,4 +27,8 @@ Route::get('enquiry',function() {
 });
 Route::get('info',function() {
 	return view('info');
+});
+
+
+
 });

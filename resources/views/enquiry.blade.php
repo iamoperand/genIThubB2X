@@ -3,6 +3,16 @@
 @section('content')
  
     <div class="container">
+      
+      @if (Session::has('success'))
+        <div class="alert alert-success fade in" role="alert">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>Success:</strong> {{Session::get('success')}}
+        </div>
+      @endif
+        
+     
+
        <div class="card card-container">
                         
             <h3> Purpose</h3>
@@ -19,4 +29,5 @@
   </form>
         </div>
     </div>
+
 @stop

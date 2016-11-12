@@ -3,7 +3,7 @@
 <div class="row">
 				<div class="col-md-5">
 
-					<p><small>&copy; 2016. All Rights Reserved. <br>Designed by <a href="http://genithub.com/" target="_blank">genIThub</a> </small></p>
+					<p class="p_credits"><small>&copy; 2016. All Rights Reserved. <br>Designed by <a href="http://genithub.com/" class="a_credits" target="_blank">genIThub</a> </small></p>
 
 				</div>
 			</div>
