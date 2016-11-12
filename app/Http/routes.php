@@ -16,3 +16,13 @@ Route::get('/', function () {
     return view('login');
 
 });
+Route::post('submit',[
+	'uses'=>'MainController@login',
+	'as'=> 'submit'
+  ]);
+Route::get('enquiry',function() {
+  return view('enquiry');
+});
+Route::get('info',function() {
+	return view('info');
+});

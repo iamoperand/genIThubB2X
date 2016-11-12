@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <footer>
 <div class="row">
 				<div class="col-md-5">
@@ -7,5 +8,6 @@
 				</div>
 			</div>
 </footer>
+</div>
 </body>
 </html>
