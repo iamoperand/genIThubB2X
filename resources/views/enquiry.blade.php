@@ -15,7 +15,7 @@
 
        <div class="card card-container">
                         
-            <h3> Purpose</h3>
+            <h3> Purpose of Visit</h3>
  <form method="post" action="">
   <div class="container-fluid">
   <div class="row">
