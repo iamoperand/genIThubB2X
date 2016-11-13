@@ -37,5 +37,8 @@ Route::post('infogen',[
      'uses'=>'MainController@postInfo',
      'as'=> 'infoSubmit'
 	]);
+Route::get('infogen',function() {
+	return view('infogen');
+})
 
 });
