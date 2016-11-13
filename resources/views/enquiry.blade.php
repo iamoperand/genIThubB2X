@@ -20,6 +20,7 @@
   <div class="container-fluid">
   <div class="row">
 
+
     <select name="purpose">
       <option value="General-Enquiry">General-Enquiry</option>
       <option value="Repair">Repair</option>
@@ -29,6 +30,7 @@
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <input type="hidden" name="_token" value="{{ Session::token() }}">
   </div>
+
   </div>
   </form>
         </div>
