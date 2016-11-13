@@ -37,17 +37,35 @@ class MainController extends BaseController
         $purpose=$request->input('purpose');
 
         $request->session()->put('purpose_key','purpose');
-        Session::set('purpose_key',$purpose);
+        Session::set('purpose_key',$purpose); //why 2
         return view('info')->with('purpose_of_visit', $purpose);
 
 
     }
     public function postInfo(Request $request)
     {
+
     $purpose=$request->session()->get('purpose_key');
     $purpose_name=$request->input('name');
     $purpose_mobile=$request->input('num');
-    DB::table('user')->insert(['purpose'=>$purpose,'name'=>$purpose_name,'phone_num'=>$purpose_mobile,'purpose'=>$purpose]);
-    return view('enquiry'); 
+    
+    DB::table('User')->insert(['purpose'=>$purpose,'name'=>$purpose_name,'phone_num'=>$purpose_mobile,'purpose'=>$purpose]);
+    $info_data = [];
+    $info_data['purpose'] = $purpose;
+    $info_data['name'] = $purpose_name;
+    $info_data['mobile'] = $purpose_mobile;
+
+    
+    $data = DB::table('User')
+            ->where('name', '=', $purpose_name)
+            ->where('phone_num', '=', $purpose_mobile)
+            ->get();
+
+    return view('infogen')->with('data', $data);
+            
+    }
+            
+    
+        
+
         }
-}
