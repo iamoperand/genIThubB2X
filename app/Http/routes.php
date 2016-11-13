@@ -34,5 +34,8 @@ Route::get('info',function() {
 	return view('info');
 });
 
+Route::get('infogen', function(){
+	return view('infogen');
+});
 
 });

@@ -5,6 +5,6 @@
 function iterate(){
  i++;
 
-document.getElementById('show').innerHTML=i;
+document.getElementById('show-token').innerHTML=i;
 }
 
