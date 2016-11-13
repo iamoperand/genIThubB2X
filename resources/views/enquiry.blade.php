@@ -19,11 +19,11 @@
  <form method="post" action="">
   <div class="container-fluid">
   <div class="row">
-    <a href="" class="btn btn-default">General Enquiry</a>
+    <a href="http://localhost/genIThubB2X/public/info" id="1" class="btn btn-default">General Enquiry</a>
     <br> 
-    <a href="" class="btn btn-default">Prepare</a>
+    <a href="http://localhost/genIThubB2X/public/info" id="2" class="btn btn-default">Repair</a>
    <br>
-    <a href="" class="btn btn-default">Accessories</a>
+    <a href="http://localhost/genIThubB2X/public/info" id="3" class="btn btn-default">Accessories</a>
   <div>
   </div>
   </form>

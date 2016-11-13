@@ -30,5 +30,4 @@ Route::get('info',function() {
 });
 
 
-
 });
