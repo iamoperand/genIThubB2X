@@ -15,15 +15,18 @@
 
        <div class="card card-container">
                         
-            <h3> Purpose</h3>
+            <h3> Purpose of Visit</h3>
  <form method="post" action="">
   <div class="container-fluid">
   <div class="row">
-    <a href="{{url('info')}}" id="1" class="btn btn-default pagerlink" onclick="process1()" name="General-Enquiry">General-Enquiry</a>
+
+
+    <a href="{{url('info')}}" id="1" class="btn btn-default pagerlink" onclick="process1_1()" name="General-Enquiry">General-Enquiry</a>
     <br> 
-    <a href="{{url('info')}}" id="2" class="btn btn-default pagerlink" onclick="process1()" name="Repair">Repair</a>
+    <a href="{{url('info')}}" id="2" class="btn btn-default pagerlink" onclick="process1_2()" name="Repair">Repair</a>
    <br>
-    <a href="{{url('info')}}" id="3" class="btn btn-default pagerlink" onclick="process1()" name="Accessories">Accessories</a>
+    <a href="{{url('info')}}" id="3" class="btn btn-default pagerlink" onclick="process1_3()" name="Accessories">Accessories</a>
+
   <div>
   </div>
   </form>
