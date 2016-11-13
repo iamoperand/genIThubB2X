@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 use Illuminate\Http\Request;
 use Session; 
+use DB;
 class MainController extends BaseController
 {
     public function login(Request $request)
@@ -35,17 +36,18 @@ class MainController extends BaseController
 
         $purpose=$request->input('purpose');
 
-        $request->session()->put('purpose_key', 'purpose');
-
+        $request->session()->put('purpose_key','purpose');
+        Session::set('purpose_key',$purpose);
         return view('info')->with('purpose_of_visit', $purpose);
 
 
     }
-    public function purpose(Request $request)
+    public function postInfo(Request $request)
     {
-
-
-
-
-    }
+    $purpose=$request->session()->get('purpose_key');
+    $purpose_name=$request->input('name');
+    $purpose_mobile=$request->input('num');
+    DB::table('user')->insert(['purpose'=>$purpose,'name'=>$purpose_name,'phone_num'=>$purpose_mobile,'purpose'=>$purpose]);
+    return view('enquiry'); 
+        }
 }

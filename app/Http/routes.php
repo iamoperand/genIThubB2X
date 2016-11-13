@@ -33,6 +33,9 @@ Route::post('info',[
 Route::get('info',function() {
 	return view('info');
 });
-
+Route::post('infogen',[
+     'uses'=>'MainController@postInfo',
+     'as'=> 'infoSubmit'
+	]);
 
 });
