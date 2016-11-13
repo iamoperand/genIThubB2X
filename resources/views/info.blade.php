@@ -31,8 +31,8 @@
           <h4 class="modal-title">Token Number</h4>
         </div>
         <div class="modal-body">
-          <p id="show"></p>
-          <p id="purpose"></p>
+          <p id="show-id"></p>
+          <p id="show-purpose"></p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

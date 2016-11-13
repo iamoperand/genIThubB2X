@@ -5,7 +5,7 @@
 function iterate(){
  i++;
 
-document.getElementById('show').innerHTML=i;
+document.getElementById('show-id').innerHTML=i;
 }
 
 
@@ -13,7 +13,22 @@ $(document).ready(function() {
   $('a.pagerlink').click(function() {
   var id=$(this).attr('id');
   	var purpose=$(this).attr('name');
-  $.ajax({type:"POST",url:'info',cache:0,data:purpose,success:function(result){
-   document.getElementById("purpose").innerHTML=result;}
-  });
+  
+  $.post('http://localhost:8000/info',
+    {
+        task: "display",
+       show-purpose: _purpose
+    })
+    .error(
+        ...
+     )
+    .success(
+        function( data )
+                    {
+                        (jQuery.parseJSON( data ));
+                      document.getElementById('show-purpose').innerHTML = "RESPONSE TEXT:" + data;
+
+                    }
+     );
+}
 });
