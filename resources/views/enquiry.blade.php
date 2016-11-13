@@ -16,16 +16,19 @@
        <div class="card card-container">
                         
             <h3> Purpose of Visit</h3>
- <form method="post" action="">
+ <form method="post" action="{{ route('purpose') }}">
   <div class="container-fluid">
   <div class="row">
 
-    <a href="{{url('info')}}" id="1" class="btn btn-default pagerlink" onclick="process1_1()" name="General-Enquiry">General-Enquiry</a>
-    <br> 
-    <a href="{{url('info')}}" id="2" class="btn btn-default pagerlink" onclick="process1_2()" name="Repair">Repair</a>
-   <br>
-    <a href="{{url('info')}}" id="3" class="btn btn-default pagerlink" onclick="process1_3()" name="Accessories">Accessories</a>
-  <div>
+    <select name="purpose">
+      <option value="General-Enquiry">General-Enquiry</option>
+      <option value="Repair">Repair</option>
+      <option value="Accessories">Accessories</option>
+    </select>
+    <button type="submit" class="btn btn-default">Submit</button>
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="_token" value="{{ Session::token() }}">
+  </div>
   </div>
   </form>
         </div>

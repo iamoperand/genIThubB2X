@@ -25,6 +25,11 @@ Route::post('enquiry',[
 Route::get('enquiry',function() {
   return view('enquiry');
 });
+Route::post('info',[
+	'uses'=>'MainController@enquiry',
+	'as'=> 'purpose'
+  ]);
+
 Route::get('info',function() {
 	return view('info');
 });

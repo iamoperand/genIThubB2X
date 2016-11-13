@@ -29,4 +29,23 @@ class MainController extends BaseController
          return view('login');
        }
     }
+
+    public function enquiry(Request $request)
+    {
+
+        $purpose=$request->input('purpose');
+
+        $request->session()->put('purpose_key', 'purpose');
+
+        return view('info')->with('purpose_of_visit', $purpose);
+
+
+    }
+    public function purpose(Request $request)
+    {
+
+
+
+
+    }
 }
