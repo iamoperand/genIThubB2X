@@ -43,6 +43,13 @@ Route::post('infogen',[
      'uses'=>'MainController@postInfo',
      'as'=> 'infoSubmit'
 	]);
+Route::post('admin',[
+  'uses'=>'MainController@loginAdmin',
+   'as'=>'adminLogin'
+	]);
+Route::get('admin',function() {
+  return view('admin');
+});
 
 
 });
