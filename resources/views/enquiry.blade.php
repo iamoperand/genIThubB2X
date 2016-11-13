@@ -19,11 +19,11 @@
  <form method="post" action="">
   <div class="container-fluid">
   <div class="row">
-    <a href="{{url('info')}}" id="1" class="btn btn-default pagerlink" name="General-Enquiry">General-Enquiry</a>
+    <a href="{{url('info')}}" id="1" class="btn btn-default pagerlink" onclick="process1()" name="General-Enquiry">General-Enquiry</a>
     <br> 
-    <a href="{{url('info')}}" id="2" class="btn btn-default pagerlink" name="Repair">Repair</a>
+    <a href="{{url('info')}}" id="2" class="btn btn-default pagerlink" onclick="process1()" name="Repair">Repair</a>
    <br>
-    <a href="{{url('info')}}" id="3" class="btn btn-default pagerlink" name="Accessories">Accessories</a>
+    <a href="{{url('info')}}" id="3" class="btn btn-default pagerlink" onclick="process1()" name="Accessories">Accessories</a>
   <div>
   </div>
   </form>

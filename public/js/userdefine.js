@@ -7,13 +7,19 @@ function iterate(){
 
 document.getElementById('show').innerHTML=i;
 }
-
-
+/*
+function process1() {
+	$('a.pagerlink').click(function() {
+  var id=$(this).attr('id');
+  	var purpose=$(this).attr('name');
+   alert(id);
+  });
+}
+*/
 $(document).ready(function() {
   $('a.pagerlink').click(function() {
   var id=$(this).attr('id');
   	var purpose=$(this).attr('name');
-  $.ajax({type:"POST",url:'info',cache:0,data:purpose,success:function(result){
-   document.getElementById("purpose").innerHTML=result;}
+   alert(id);
   });
 });
