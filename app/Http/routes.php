@@ -48,15 +48,13 @@ Route::post('admin',[
    'as'=>'adminLogin'
 	]);
 
-Route::post('employer',[
+Route::post('designation',[
   'uses'=>'MainController@processInfo',
   'as'=>'processInfo'
   ]);
 
 Route::get('employer','MainController@showEmployer');
-Route::get('employee', function(){
-  return view('employee');
-});
+Route::get('employee','MainController@showEmployee');
 
 Route::post('start-query',[
  'uses' =>'MainController@startQuery',

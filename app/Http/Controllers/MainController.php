@@ -14,6 +14,7 @@ use DB;
 use Carbon\Carbon;
 use Excel;
 use PDO;
+
 class MainController extends BaseController
 {
     public function login(Request $request)
@@ -104,13 +105,12 @@ class MainController extends BaseController
           if($choice=='employer'){
             $users = DB::table('User')->paginate(7);  
             Session::set('designation',$choice);
-            return view('employer', ['users' => $users]);
-
+            return redirect('employer')->with('users',$users);
           }
           else if($choice=='employee'){
             $users = DB::table('User')->where('e_flag','0')->paginate(7);
             Session::set('designation',$choice);
-            return view('employee', ['users' => $users]);
+            return redirect('employee')->with('users',$users);
           }
 
 
@@ -122,17 +122,28 @@ class MainController extends BaseController
        
         if(Session::has('admin_logged')){
 
-        $var_choice = Session::get('designation');
-         
-        if($var_choice=='employer'){
+        
           $users = DB::table('User')->paginate(7);
          
           return view('employer')->with('users',$users);  
+                
+        }else{
+          
+          return view('login');
         }
-        else if($var_choice=='employee'){
+
+       
+       
+        }
+        public function showEmployee(Request $request)
+       {
+       
+       
+        if(Session::has('admin_logged')){
+
           $users = DB::table('User')->where('e_flag','0')->paginate(7);
           return view('employee')->with('users',$users); 
-        }
+        
         
         }else{
           
