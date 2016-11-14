@@ -4,8 +4,8 @@
 
 
 <div class="container" style="background-color:white;">
-  <h2>Customer Information</h2>
-  <p></p>            
+  <div class="text-center" style="font-family: 'Lato', sans-serif;font-size:1.7em;font-weight:700;margin-top:10px;color:#6d6d6d;">Customer Information <span style="color:#020000;">(Permanent)</span></div>
+     <p></p>           
   <table class="table table-bordered table-hover">
     <thead>
       <tr>
@@ -21,7 +21,7 @@
 @foreach ($users as $user)
     
       <tr>
-        <td>{{ $user->token_num }}</td>
+        <td><span style="font-size:1.2em;font-weight:700;">{{ $user->token_num }}</span></td>
         <td>{{ $user->purpose }}</td>
         <td>{{ $user->name }}</td>
         <td>{{ $user->phone_num }}</td>
