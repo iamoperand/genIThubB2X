@@ -37,8 +37,8 @@ class MainController extends BaseController
 
         $purpose=$request->input('purpose');
 
-        $request->session()->put('purpose_key','purpose');
-        Session::set('purpose_key',$purpose); //why 2
+        
+        Session::set('purpose_key',$purpose); 
         return view('info')->with('purpose_of_visit', $purpose);
 
 
@@ -46,19 +46,19 @@ class MainController extends BaseController
     public function postInfo(Request $request)
     {
 
-    $purpose=$request->session()->get('purpose_key');
+    $purpose=Session::get('purpose_key');
     $purpose_name=$request->input('name');
     $purpose_mobile=$request->input('num');
     $time=Carbon::now(); 
     $time_now=$time->toDateTimeString();
-    DB::table('user')->insert(['purpose'=>$purpose,'name'=>$purpose_name,'phone_num'=>$purpose_mobile,'purpose'=>$purpose,'start_timestamp'=>$time_now]);
+    DB::table('User')->insert(['purpose'=>$purpose,'name'=>$purpose_name,'phone_num'=>$purpose_mobile,'purpose'=>$purpose,'start_timestamp'=>$time_now]);
     $info_data = [];
     $info_data['purpose'] = $purpose;
     $info_data['name'] = $purpose_name;
     $info_data['mobile'] = $purpose_mobile;
 
     
-    $data = DB::table('user')
+    $data = DB::table('User')
             ->where('name', '=', $purpose_name)
             ->where('phone_num', '=', $purpose_mobile)
             ->get();
@@ -76,15 +76,34 @@ class MainController extends BaseController
        {
 
         Session::flash('success', 'You are successfully logged in');
-        $users = DB::table('user')->paginate(10);
-        return view('admin')->with('users',$users);
+        $logged = true;
+        Session::set('admin_logged',$logged);
+        $users = DB::table('User')->paginate(5);
+        
+        return view('admin', ['users' => $users]);
        }
        else
        {  
 
          Session::flash('failure', 'Invalid username/password combination. Please try again!');
+         
          return view('login');
        }
+       
+       
+        }
+        public function showAdmin(Request $request)
+       {
+       
+       
+        if(Session::has('admin_logged')){
+        $users = DB::table('User')->paginate(5);
+        
+        return view('admin')->with('users',$users);
+        }else{
+          
+          return view('login');
+        }
        
        
         }

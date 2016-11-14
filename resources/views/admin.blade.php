@@ -17,7 +17,7 @@
       </tr>
     </thead>
 <tbody>
-@foreach($users as $user)
+@foreach ($users as $user)
     
       <tr>
         <td>{{ $user->token_num }}</td>
@@ -28,11 +28,13 @@
         <td>{{ $user->end_timestamp }}</td>
       </tr>
     
-  @endforeach
+@endforeach
 
   </tbody>
   </table>
-{{ $users->links() }}
+  <div class="text-center">
+{!! $users->links(); !!}
+</div>
 </div>
 
 
