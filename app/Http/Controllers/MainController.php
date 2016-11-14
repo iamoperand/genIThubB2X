@@ -153,7 +153,7 @@ class MainController extends BaseController
          $token=$request->input('token');
           $time=Carbon::now(); 
          $time_now=$time->toDateTimeString();
-         DB::table('User')->where('token_num',$token)->update(['e_flag'=>'1','end_timestamp'=>$time_now]);
+         DB::table('user')->where('token_num',$token)->update(['e_flag'=>'1','end_timestamp'=>$time_now]);
          return redirect()->back();
         }
 }
