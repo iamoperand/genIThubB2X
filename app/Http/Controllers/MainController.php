@@ -121,13 +121,14 @@ class MainController extends BaseController
         if(Session::has('admin_logged')){
 
         $var_choice = Session::get('designation');
-         $users = DB::table('User')->paginate(5);
+         
         if($var_choice=='employer'){
+          $users = DB::table('User')->paginate(5);
          
           return view('employer')->with('users',$users);  
         }
         else if($var_choice=='employee'){
-          
+          $users = DB::table('User')->where('e_flag','0')->paginate(5);
           return view('employee')->with('users',$users); 
         }
         
@@ -138,5 +139,21 @@ class MainController extends BaseController
 
        
        
+        }
+        public function startQuery(Request $request)
+        {
+         $token=$request->input('token');
+         $time=Carbon::now(); 
+         $time_now=$time->toDateTimeString();
+         DB::table('user')->where('token_num',$token)->update(['a_flag'=>'1','start_timestamp'=>$time_now]);
+         return redirect()->back();
+        }
+        public function finishQuery(Request $request)
+        {
+         $token=$request->input('token');
+          $time=Carbon::now(); 
+         $time_now=$time->toDateTimeString();
+         DB::table('user')->where('token_num',$token)->update(['e_flag'=>'1','end_timestamp'=>$time_now]);
+         return redirect()->back();
         }
 }

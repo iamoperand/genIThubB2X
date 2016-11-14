@@ -26,8 +26,10 @@
         <td>{{ $user->purpose }}</td>
         <td>{{ $user->name }}</td>
         <td>{{ $user->phone_num }}</td>
-        <td><button type="submit">Accepted</button></td>
-        <td><button type="submit">Finished</button></td>
+        <td><form method="post" action="{{route('startQuery')}}"><button type="submit" class="btn btn-info"  {{ $user->a_flag==true?'disabled':''}}>Accepted</button><input type="hidden" name="token" value="{{ $user->token_num }}"><input type="hidden" name="flag" value="1"><input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="_token" value="{{ Session::token() }}"></form></td>
+        <td><form method="post" action="{{route('finishQuery')}}"><button type="submit" class="btn btn-info" {{ $user->e_flag==true?'disabled':''}}>Finished</button><input type="hidden" name="token" value="{{ $user->token_num }}"><input type="hidden" name="flag" value="1"><input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="_token" value="{{ Session::token() }}"></form></td>
       </tr>
     
 @endforeach
