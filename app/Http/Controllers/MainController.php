@@ -168,7 +168,7 @@ class MainController extends BaseController
     
     $info = DB::table('User')->get();
     
-    DB::setFetchMode(PDO::FETCH_CLASS);
+    
     // Initialize the array which will be passed into the Excel
     // generator.
     $infoArray = []; 
