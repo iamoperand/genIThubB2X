@@ -168,17 +168,25 @@ class MainController extends BaseController
     
     $info = DB::table('User')->get();
 
-    DB::setFetchMode(PDO::FETCH_CLASS);
-    // Initialize the array which will be passed into the Excel
-    // generator.
     $infoArray = []; 
 
     // Define the Excel spreadsheet headers
-    $infoArray[] = ['token_num', 'purpose','name','phone_num','start_timestamp','end_timestamp','a_flag','e_flag'];
+    $infoArray = ['token_num', 'purpose','name','phone_num','start_timestamp','end_timestamp','a_flag','e_flag'];
 
     // Convert each member of the returned collection into an array,
     // and append it to the payments array.
-    $infoArray[] = $info;
+    foreach($info as $data)
+    {
+     $infoArray['token_num'] = $data->token_num;
+     $infoArray['purpose']=$data->purpose;
+     $infoArray['name']=$data->name;
+     $infoArray['purpose']=$data->phone_num;
+     $infoArray['start_timestamp']=$data->start_timestamp;
+     $infoArray['end_timestamp']=$data->end_timestamp;
+     $infoArray['a_flag']=$data->a_flag;
+     $infoArray['e_flag']=$data->e_flag;
+    }
+    
      
     
 
