@@ -18,7 +18,7 @@
 	
 	<script src="js/facebox.js"></script>
 	<script src="js/facebox_jquery.js"></script>
-	
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	<style>
 		.p_credits{
 			color: #e0e0e0;

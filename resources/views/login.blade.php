@@ -15,20 +15,25 @@
         <div class="col-md-6">
         <div class="card card-container">
                     <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-            <p id="profile-name" class="profile-name-card">User Login</p>
+            <p id="profile-name" class="profile-name-card" style="font-size:1.5em;color:#ff003f;font-family: 'Lato', sans-serif;">User Login</p>
+            <div>&nbsp;</div>
  <form method="post" action="{{ route('submit') }}">
-    <div class="form-group">
+    <div class="form-group text-center">
       <label for="Name">Username</label>
-      <input type="name" name="name" class="form-control"  placeholder="Enter email">
+      <input type="name" name="name" class="form-control text-center" placeholder="Enter name">
     </div>
-    <div class="form-group">
+    <div class="form-group text-center">
       <label for="pwd">Password</label>
-      <input type="password" name="pass" class="form-control" placeholder="Enter password">
+      <input type="password" name="pass" class="form-control text-center" placeholder="Enter password">
     </div>
+    <!--
     <div class="checkbox">
       <label><input type="checkbox" name="Remember"> Remember me</label>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    -->
+    <div class="text-center">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
  <input type="hidden" name="_token" value="{{ csrf_token() }}">
  <input type="hidden" name="_token" value="{{ Session::token() }}">
   </form>
@@ -37,20 +42,23 @@
       <div class="col-md-6">
       <div class="card card-container">
                     <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-            <p id="profile-name" class="profile-name-card">Admin Login</p>
+            <p id="profile-name" class="profile-name-card" style="font-size:1.5em;color:#ff8300;font-family: 'Lato', sans-serif;">Admin Login</p>
+            <div>&nbsp;</div>
  <form method="post" action="{{ route('adminLogin') }}">
-    <div class="form-group">
+    <div class="form-group text-center">
       <label for="Name">Username</label>
-      <input type="name" name="name" class="form-control"  placeholder="Enter email">
+      <input type="name" name="name" class="form-control text-center"  placeholder="Enter name">
     </div>
-    <div class="form-group">
+    <div class="form-group text-center">
       <label for="pwd">Password</label>
-      <input type="password" name="pass" class="form-control" placeholder="Enter password">
+      <input type="password" name="pass" class="form-control text-center" placeholder="Enter password">
     </div>
-    <div class="checkbox">
+    <!--<div class="checkbox">
       <label><input type="checkbox" name="Remember"> Remember me</label>
+    </div>-->
+    <div class="text-center">
+    <button type="submit" class="btn btn-primary">Submit</button>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
  <input type="hidden" name="_token" value="{{ csrf_token() }}">
  <input type="hidden" name="_token" value="{{ Session::token() }}">
   </form>

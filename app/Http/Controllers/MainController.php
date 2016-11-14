@@ -22,7 +22,7 @@ class MainController extends BaseController
        if($name=='dalip' && $pass=='123')
        {
 
-        Session::flash('success', 'You are successfully logged in');
+        Session::flash('success_user', 'You are successfully logged in');
        	return view('enquiry');
        }
        else
@@ -76,7 +76,7 @@ class MainController extends BaseController
        if($name=='dalip' && $pass=='123')
        {
 
-        Session::flash('success', 'You are successfully logged in');
+        Session::flash('success_admin', 'You are successfully logged in');
 
         $logged = true;
         Session::set('admin_logged',$logged);
@@ -98,15 +98,15 @@ class MainController extends BaseController
         {
 
           $choice = $request->input('choice');
-          $users = DB::table('User')->paginate(5);
+          
           if($choice=='employer'){
-            
+            $users = DB::table('User')->paginate(7);  
             Session::set('designation',$choice);
             return view('employer', ['users' => $users]);
 
           }
           else if($choice=='employee'){
-            
+            $users = DB::table('User')->where('e_flag','0')->paginate(7);
             Session::set('designation',$choice);
             return view('employee', ['users' => $users]);
           }
@@ -123,12 +123,12 @@ class MainController extends BaseController
         $var_choice = Session::get('designation');
          
         if($var_choice=='employer'){
-          $users = DB::table('User')->paginate(5);
+          $users = DB::table('User')->paginate(7);
          
           return view('employer')->with('users',$users);  
         }
         else if($var_choice=='employee'){
-          $users = DB::table('User')->where('e_flag','0')->paginate(5);
+          $users = DB::table('User')->where('e_flag','0')->paginate(7);
           return view('employee')->with('users',$users); 
         }
         

@@ -4,10 +4,10 @@
  
     <div class="container">
       
-      @if (Session::has('success'))
+      @if (Session::has('success_user'))
         <div class="alert alert-success fade in" role="alert">
           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <strong>Success:</strong> {{Session::get('success')}}
+          <strong>Success:</strong> {{Session::get('success_user')}}
         </div>
       @endif
         
@@ -15,18 +15,22 @@
 
        <div class="card card-container">
                         
-            <h3> Purpose of Visit</h3>
+            <div class="text-center" style="font-size:1.8em;font-weight:700;font-family: 'Lato', sans-serif;">Purpose of Visit</div>
+ <div>&nbsp;</div>
  <form method="post" action="{{ route('purpose') }}">
   <div class="container-fluid">
   <div class="row">
 
 
-    <select name="purpose">
+    <select name="purpose" class="form-control">
       <option value="General-Enquiry">General-Enquiry</option>
       <option value="Repair">Repair</option>
       <option value="Accessories">Accessories</option>
     </select>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <br />
+    <div class="text-center">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <input type="hidden" name="_token" value="{{ Session::token() }}">
   </div>
