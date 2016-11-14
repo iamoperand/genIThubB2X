@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Session; 
 use DB;
 use Carbon\Carbon;
+use Excel;
+use PDO;
 class MainController extends BaseController
 {
     public function login(Request $request)
@@ -156,4 +158,43 @@ class MainController extends BaseController
          DB::table('User')->where('token_num',$token)->update(['e_flag'=>'1','end_timestamp'=>$time_now]);
          return redirect()->back();
         }
+        public function infoExcel() {
+
+    // Execute the query used to retrieve the data. In this example
+    // we're joining hypothetical users and payments tables, retrieving
+    // the payments table's primary key, the user's first and last name, 
+    // the user's e-mail address, the amount paid, and the payment
+    // timestamp.
+    
+    $info = DB::table('User')->get();
+
+    DB::setFetchMode(PDO::FETCH_CLASS);
+    // Initialize the array which will be passed into the Excel
+    // generator.
+    $infoArray = []; 
+
+    // Define the Excel spreadsheet headers
+    $infoArray[] = ['token_num', 'purpose','name','phone_num','start_timestamp','end_timestamp','a_flag','e_flag'];
+
+    // Convert each member of the returned collection into an array,
+    // and append it to the payments array.
+    $infoArray[] = $info;
+     
+    
+
+    // Generate and return the spreadsheet
+    Excel::create('info', function($excel) use ($infoArray) {
+
+        // Set the spreadsheet title, creator, and description
+        $excel->setTitle('Info');
+        $excel->setCreator('Laravel')->setCompany('B2X Rohini');
+        $excel->setDescription('Customer Information File');
+
+        // Build the spreadsheet, passing in the payments array
+        $excel->sheet('sheet1', function($sheet) use ($infoArray) {
+            $sheet->fromArray($infoArray, null, 'A1', false, false);
+        });
+
+    })->download('xlsx');
+}
 }
