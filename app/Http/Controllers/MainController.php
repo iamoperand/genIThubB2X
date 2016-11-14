@@ -167,7 +167,7 @@ class MainController extends BaseController
     // timestamp.
     
     $info = DB::table('User')->get();
-
+    
     DB::setFetchMode(PDO::FETCH_CLASS);
     // Initialize the array which will be passed into the Excel
     // generator.
@@ -178,8 +178,9 @@ class MainController extends BaseController
 
     // Convert each member of the returned collection into an array,
     // and append it to the payments array.
-    $infoArray[] = $info;
-     
+    foreach($info as $data){
+    $infoArray[] = (array) $data;
+     }
     
 
     // Generate and return the spreadsheet
