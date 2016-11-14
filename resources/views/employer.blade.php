@@ -3,9 +3,8 @@
 @section('content')
 
 
-
 <div class="container" style="background-color:white;">
-  <h2>Employee</h2>
+  <h2>Customer Information</h2>
   <p></p>            
   <table class="table table-bordered table-hover">
     <thead>
@@ -26,18 +25,16 @@
         <td>{{ $user->purpose }}</td>
         <td>{{ $user->name }}</td>
         <td>{{ $user->phone_num }}</td>
-        <td><button type="submit">Accepted</button></td>
-        <td><button type="submit">Finished</button></td>
+        <td>{{ $user->start_timestamp }}</td>
+        <td>{{ $user->end_timestamp }}</td>
       </tr>
     
 @endforeach
 
   </tbody>
   </table>
-
   <div class="text-center">
 {!! $users->links(); !!}
 </div>
 </div>
-
 @stop

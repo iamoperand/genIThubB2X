@@ -80,10 +80,8 @@ class MainController extends BaseController
 
         $logged = true;
         Session::set('admin_logged',$logged);
-        $users = DB::table('user')->paginate(5);
-        
-        return view('admin', ['users' => $users]);
 
+        return view('admin');
        }
        else
        {  
@@ -95,25 +93,49 @@ class MainController extends BaseController
        
        
         }
-        public function showAdmin(Request $request)
+
+        public function processInfo(Request $request)
+        {
+
+          $choice = $request->input('choice');
+          $users = DB::table('User')->paginate(5);
+          if($choice=='employer'){
+            
+            Session::set('designation',$choice);
+            return view('employer', ['users' => $users]);
+
+          }
+          else if($choice=='employee'){
+            
+            Session::set('designation',$choice);
+            return view('employee', ['users' => $users]);
+          }
+
+
+
+        }
+        public function showEmployer(Request $request)
        {
        
        
         if(Session::has('admin_logged')){
-        $users = DB::table('user')->paginate(5);
-        if(Route::has('admin'))
-        {
-        return view('admin')->with('users',$users);  
+
+        $var_choice = Session::get('designation');
+         $users = DB::table('User')->paginate(5);
+        if($var_choice=='employer'){
+         
+          return view('employer')->with('users',$users);  
         }
-        else if(Route::has('employee'))
-        {
-        return view('employee')->with('users',$users);
+        else if($var_choice=='employee'){
+          
+          return view('employee')->with('users',$users); 
         }
         
         }else{
           
           return view('login');
         }
+
        
        
         }

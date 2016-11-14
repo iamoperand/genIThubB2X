@@ -47,8 +47,20 @@ Route::post('admin',[
   'uses'=>'MainController@loginAdmin',
    'as'=>'adminLogin'
 	]);
+<<<<<<< HEAD
 Route::get('admin','MainController@showAdmin');
 Route::get('employee','MainController@showAdmin');
+=======
+Route::post('employer',[
+  'uses'=>'MainController@processInfo',
+  'as'=>'processInfo'
+  ]);
+
+Route::get('employer','MainController@showEmployer');
+Route::get('employee', function(){
+  return view('employee');
+});
+>>>>>>> ff8cd56966e521f4c94dc3d7ca354a06049d7d5c
 
 
 });
