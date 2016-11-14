@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use View;
+use App\Models\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -51,14 +52,14 @@ class MainController extends BaseController
     $purpose_mobile=$request->input('num');
     $time=Carbon::now(); 
     $time_now=$time->toDateTimeString();
-    DB::table('User')->insert(['purpose'=>$purpose,'name'=>$purpose_name,'phone_num'=>$purpose_mobile,'purpose'=>$purpose,'start_timestamp'=>$time_now]);
+    DB::table('user')->insert(['purpose'=>$purpose,'name'=>$purpose_name,'phone_num'=>$purpose_mobile,'purpose'=>$purpose,'start_timestamp'=>$time_now]);
     $info_data = [];
     $info_data['purpose'] = $purpose;
     $info_data['name'] = $purpose_name;
     $info_data['mobile'] = $purpose_mobile;
 
     
-    $data = DB::table('User')
+    $data = DB::table('user')
             ->where('name', '=', $purpose_name)
             ->where('phone_num', '=', $purpose_mobile)
             ->get();
@@ -76,8 +77,10 @@ class MainController extends BaseController
        {
 
         Session::flash('success', 'You are successfully logged in');
+
         $logged = true;
         Session::set('admin_logged',$logged);
+
         return view('admin');
        }
        else
@@ -116,17 +119,18 @@ class MainController extends BaseController
        
        
         if(Session::has('admin_logged')){
+
         $var_choice = Session::get('designation');
-         $users = DB::table('User')->paginate(5);
+         
         if($var_choice=='employer'){
+          $users = DB::table('User')->paginate(5);
          
           return view('employer')->with('users',$users);  
         }
         else if($var_choice=='employee'){
-          
+          $users = DB::table('User')->where('e_flag','0')->paginate(5);
           return view('employee')->with('users',$users); 
         }
-
         
         }else{
           
@@ -135,5 +139,21 @@ class MainController extends BaseController
 
        
        
+        }
+        public function startQuery(Request $request)
+        {
+         $token=$request->input('token');
+         $time=Carbon::now(); 
+         $time_now=$time->toDateTimeString();
+         DB::table('user')->where('token_num',$token)->update(['a_flag'=>'1','start_timestamp'=>$time_now]);
+         return redirect()->back();
+        }
+        public function finishQuery(Request $request)
+        {
+         $token=$request->input('token');
+          $time=Carbon::now(); 
+         $time_now=$time->toDateTimeString();
+         DB::table('user')->where('token_num',$token)->update(['e_flag'=>'1','end_timestamp'=>$time_now]);
+         return redirect()->back();
         }
 }

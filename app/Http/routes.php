@@ -47,6 +47,7 @@ Route::post('admin',[
   'uses'=>'MainController@loginAdmin',
    'as'=>'adminLogin'
 	]);
+
 Route::post('employer',[
   'uses'=>'MainController@processInfo',
   'as'=>'processInfo'
@@ -57,5 +58,12 @@ Route::get('employee', function(){
   return view('employee');
 });
 
-
+Route::post('start-query',[
+ 'uses' =>'MainController@startQuery',
+  'as' => 'startQuery'
+ ]);
+Route::post('complete-query',[
+ 'uses' =>'MainController@finishQuery',
+  'as' => 'finishQuery'
+	]);
 });
