@@ -32,7 +32,7 @@
 
   </tbody>
   </table>
-{{ $users->links() }}
+   {!! $users->render() !!} 
 </div>
 
 

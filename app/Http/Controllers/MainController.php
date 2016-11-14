@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use View;
+use App\Models\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -76,8 +77,8 @@ class MainController extends BaseController
        {
 
         Session::flash('success', 'You are successfully logged in');
-        $users = DB::table('user')->paginate(10);
-        return view('admin')->with('users',$users);
+        $users = User::paginate(10);
+        return View::make('admin',compact('users'));
        }
        else
        {  
