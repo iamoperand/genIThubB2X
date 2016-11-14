@@ -168,6 +168,11 @@ class MainController extends BaseController
     
     $info = DB::table('User')->get();
 
+    
+  
+    // Initialize the array which will be passed into the Excel
+    // generator.
+
     $infoArray = []; 
 
     // Define the Excel spreadsheet headers
@@ -175,19 +180,11 @@ class MainController extends BaseController
 
     // Convert each member of the returned collection into an array,
     // and append it to the payments array.
-    foreach($info as $data)
-    {
-     $infoArray['token_num'] = $data->token_num;
-     $infoArray['purpose']=$data->purpose;
-     $infoArray['name']=$data->name;
-     $infoArray['purpose']=$data->phone_num;
-     $infoArray['start_timestamp']=$data->start_timestamp;
-     $infoArray['end_timestamp']=$data->end_timestamp;
-     $infoArray['a_flag']=$data->a_flag;
-     $infoArray['e_flag']=$data->e_flag;
-    }
-    
-     
+
+    foreach($info as $data){
+    $infoArray[] = (array) $data;
+     }
+
     
 
     // Generate and return the spreadsheet
