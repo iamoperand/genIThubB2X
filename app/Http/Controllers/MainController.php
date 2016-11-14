@@ -52,14 +52,14 @@ class MainController extends BaseController
     $purpose_mobile=$request->input('num');
     $time=Carbon::now(); 
     $time_now=$time->toDateTimeString();
-    DB::table('user')->insert(['purpose'=>$purpose,'name'=>$purpose_name,'phone_num'=>$purpose_mobile,'purpose'=>$purpose,'start_timestamp'=>$time_now]);
+    DB::table('User')->insert(['purpose'=>$purpose,'name'=>$purpose_name,'phone_num'=>$purpose_mobile,'purpose'=>$purpose,'start_timestamp'=>$time_now]);
     $info_data = [];
     $info_data['purpose'] = $purpose;
     $info_data['name'] = $purpose_name;
     $info_data['mobile'] = $purpose_mobile;
 
     
-    $data = DB::table('user')
+    $data = DB::table('User')
             ->where('name', '=', $purpose_name)
             ->where('phone_num', '=', $purpose_mobile)
             ->get();
@@ -145,7 +145,7 @@ class MainController extends BaseController
          $token=$request->input('token');
          $time=Carbon::now(); 
          $time_now=$time->toDateTimeString();
-         DB::table('user')->where('token_num',$token)->update(['a_flag'=>'1','start_timestamp'=>$time_now]);
+         DB::table('User')->where('token_num',$token)->update(['a_flag'=>'1','start_timestamp'=>$time_now]);
          return redirect()->back();
         }
         public function finishQuery(Request $request)
@@ -153,7 +153,7 @@ class MainController extends BaseController
          $token=$request->input('token');
           $time=Carbon::now(); 
          $time_now=$time->toDateTimeString();
-         DB::table('user')->where('token_num',$token)->update(['e_flag'=>'1','end_timestamp'=>$time_now]);
+         DB::table('User')->where('token_num',$token)->update(['e_flag'=>'1','end_timestamp'=>$time_now]);
          return redirect()->back();
         }
 }

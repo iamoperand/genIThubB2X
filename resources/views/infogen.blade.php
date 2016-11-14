@@ -11,7 +11,7 @@
         <h4 class="modal-title">Welcome to B2X Services</h4>
         </div>
         <div class="modal-body">
-          <p id="myText" style="font-size:1.2em">Your token number is <span id="show-token" style="font-weight:700;font-size:1.4em;">{{ $info->token_num }}</span></p>
+          <p id="myText" style="font-weight:700;font-size:1.4em;">Your token number is {{ $info->token_num }}</p>
           <br />
           <br />
           <label>
