@@ -52,14 +52,14 @@ class MainController extends BaseController
     $purpose_mobile=$request->input('num');
     $time=Carbon::now(); 
     $time_now=$time->toDateTimeString();
-    DB::table('User')->insert(['purpose'=>$purpose,'name'=>$purpose_name,'phone_num'=>$purpose_mobile,'purpose'=>$purpose,'start_timestamp'=>$time_now]);
+    DB::table('user')->insert(['purpose'=>$purpose,'name'=>$purpose_name,'phone_num'=>$purpose_mobile,'purpose'=>$purpose,'start_timestamp'=>$time_now]);
     $info_data = [];
     $info_data['purpose'] = $purpose;
     $info_data['name'] = $purpose_name;
     $info_data['mobile'] = $purpose_mobile;
 
     
-    $data = DB::table('User')
+    $data = DB::table('user')
             ->where('name', '=', $purpose_name)
             ->where('phone_num', '=', $purpose_mobile)
             ->get();
@@ -80,7 +80,7 @@ class MainController extends BaseController
 
         $logged = true;
         Session::set('admin_logged',$logged);
-        $users = DB::table('User')->paginate(5);
+        $users = DB::table('user')->paginate(5);
         
         return view('admin', ['users' => $users]);
 
@@ -100,9 +100,16 @@ class MainController extends BaseController
        
        
         if(Session::has('admin_logged')){
-        $users = DB::table('User')->paginate(5);
+        $users = DB::table('user')->paginate(5);
+        if(Route::has('admin'))
+        {
+        return view('admin')->with('users',$users);  
+        }
+        else if(Route::has('employee'))
+        {
+        return view('employee')->with('users',$users);
+        }
         
-        return view('admin')->with('users',$users);
         }else{
           
           return view('login');

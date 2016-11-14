@@ -48,6 +48,7 @@ Route::post('admin',[
    'as'=>'adminLogin'
 	]);
 Route::get('admin','MainController@showAdmin');
+Route::get('employee','MainController@showAdmin');
 
 
 });
