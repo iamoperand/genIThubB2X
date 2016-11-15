@@ -84,7 +84,5 @@ Route::get('/admin/excel',
   'uses' => 'MainController@infoExcel'
 ]);
 
-Route::get('display',function(){
-  return view('display');
-});
+Route::get('display','MainController@getDisplay');
 });

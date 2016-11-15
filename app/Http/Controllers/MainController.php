@@ -255,4 +255,12 @@ else{
 /* Having problems with redirecting. Views not recovered when return view('login') is used.*/
 }
 }
+
+public function getDisplay(Request $request)
+{
+$users = DB::table('User')->where('e_flag','0')->where('a_flag','1')->get();
+return view('display')->with('users',$users); 
+}
+
+
 }
