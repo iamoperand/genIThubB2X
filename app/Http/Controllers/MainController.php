@@ -105,12 +105,14 @@ class MainController extends BaseController
           if($choice=='employer'){
             $users = DB::table('User')->paginate(7);  
             Session::set('designation',$choice);
-            return redirect('erlogin')->with('users',$users);
+            return redirect('erlogin');
           }
           else if($choice=='employee'){
             $users = DB::table('User')->where('e_flag','0')->paginate(7);
             Session::set('designation',$choice);
-            return redirect('eelogin')->with('users',$users);
+            return redirect('employee')->with('users',$users);
+            /* redirect('eelogin'); */
+
           }
 
 

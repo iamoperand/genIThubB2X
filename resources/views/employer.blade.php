@@ -24,8 +24,7 @@
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="{{url('export')}}">Export to Excel</a></li>
-          <li><a href="#">Page 1-2</a></li>
-          <li><a href="#">Page 1-3</a></li>
+          
         </ul>
       </li>
       </ul>

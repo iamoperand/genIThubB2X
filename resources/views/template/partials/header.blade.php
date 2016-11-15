@@ -3,7 +3,7 @@
 			<div class="container-fluid">
 				<div class="navbar-header"> 
 				<!-- Mobile Toggle Menu Button -->
-				<a class="navbar-brand" href="#">B2X Services</a>
+				<a class="navbar-brand" href="{{url('/')}}">Avionic Solutions</a>
 				</div>
 				
 		</nav>
