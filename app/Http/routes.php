@@ -52,7 +52,16 @@ Route::post('designation',[
   'uses'=>'MainController@processInfo',
   'as'=>'processInfo'
   ]);
-
+Route::get('erlogin',function(){
+  return view('erlogin');
+});
+Route::get('eelogin',function(){
+  return view('eelogin');
+});
+Route::post('employer',[
+  'uses'=>'MainController@erLogin',
+  'as'=>'erLogin'
+  ]);
 Route::get('employer','MainController@showEmployer');
 Route::get('employee','MainController@showEmployee');
 
@@ -74,4 +83,8 @@ Route::get('/admin/excel',
   'as' => 'admin.info.excel',
   'uses' => 'MainController@infoExcel'
 ]);
+
+Route::get('display',function(){
+  return view('display');
+});
 });

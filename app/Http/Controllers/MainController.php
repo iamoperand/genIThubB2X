@@ -105,14 +105,44 @@ class MainController extends BaseController
           if($choice=='employer'){
             $users = DB::table('User')->paginate(7);  
             Session::set('designation',$choice);
-            return redirect('employer')->with('users',$users);
+            return redirect('erlogin')->with('users',$users);
           }
           else if($choice=='employee'){
             $users = DB::table('User')->where('e_flag','0')->paginate(7);
             Session::set('designation',$choice);
-            return redirect('employee')->with('users',$users);
+            return redirect('eelogin')->with('users',$users);
           }
 
+
+
+        }
+
+        public function erLogin(Request $request)
+        {
+
+        $name=$request->input('er_name');
+        $pass=$request->input('er_pass');
+    
+       if($name=='admin' && $pass=='123')
+       {
+
+        Session::flash('success_employer', 'You are successfully logged in');
+        $employer_logged = true;
+        Session::set('employer_logged',$employer_logged);
+
+        $users = DB::table('User')->paginate(7);
+        return redirect('employer')->with('users',$users);
+        
+        
+       }
+       else
+       {  
+
+         Session::flash('failure_employer', 'Invalid username/password combination. Please try again!');
+         
+         return view('erlogin');
+       }
+       
 
 
         }
@@ -171,6 +201,7 @@ class MainController extends BaseController
         }
         public function infoExcel() {
 
+if(Session::has('employer_logged')){
     // Execute the query used to retrieve the data. In this example
     // we're joining hypothetical users and payments tables, retrieving
     // the payments table's primary key, the user's first and last name, 
@@ -208,5 +239,20 @@ class MainController extends BaseController
         });
 
     })->download('xlsx');
+}
+else if(Session::has('admin_logged'))
+{
+
+Session::flash('employer_notlogged', 'You are not logged in as an Employer. Please login to continue!');
+
+return redirect('erlogin');
+/* Having problems with redirecting. Views not recovered when return view('erlogin') is used.*/
+}
+else{
+  Session::flash('admin_notlogged', 'You are not logged in as an office personnel. Please login to continue!');
+  
+  return redirect('login');
+/* Having problems with redirecting. Views not recovered when return view('login') is used.*/
+}
 }
 }

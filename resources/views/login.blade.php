@@ -10,7 +10,16 @@
             <strong>Failed:</strong> {{Session::get('failure')}}
         </div>
 
-      @endif  
+      @endif 
+      
+      @if (Session::has('admin_notlogged'))
+        <div class="alert alert-danger fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Failed:</strong> {{Session::get('admin_notlogged')}}
+        </div>
+
+      @endif
+       
       <div class="row">
         <div class="col-md-6">
         <div class="card card-container">
