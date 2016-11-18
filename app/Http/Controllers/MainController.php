@@ -253,7 +253,7 @@ return redirect('erlogin');
 else{
   Session::flash('admin_notlogged', 'You are not logged in as an office personnel. Please login to continue!');
   
-  return redirect('login');
+  return redirect()->view('login');
 /* Having problems with redirecting. Views not recovered when return view('login') is used.*/
 }
 }
