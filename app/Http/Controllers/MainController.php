@@ -22,7 +22,7 @@ class MainController extends BaseController
            $name=$request->input('name');
            $pass=$request->input('pass');
     
-       if($name=='dalip' && $pass=='123')
+       if($name=='avionicuser@gmail.com' && $pass=='123')
        {
 
         Session::flash('success_user', 'You are successfully logged in');
@@ -76,7 +76,7 @@ class MainController extends BaseController
        $name=$request->input('name');
        $pass=$request->input('pass');
     
-       if($name=='dalip' && $pass=='123')
+       if($name=='avionicsolutions@gmail.com' && $pass=='123')
        {
 
         Session::flash('success_admin', 'You are successfully logged in');
@@ -125,7 +125,7 @@ class MainController extends BaseController
         $name=$request->input('er_name');
         $pass=$request->input('er_pass');
     
-       if($name=='admin' && $pass=='123')
+       if($name=='del5.smartbar@b2x.com' && $pass=='123')
        {
 
         Session::flash('success_employer', 'You are successfully logged in');
@@ -247,13 +247,13 @@ else if(Session::has('admin_logged'))
 
 Session::flash('employer_notlogged', 'You are not logged in as an Employer. Please login to continue!');
 
-return redirect('erlogin');
+return view('erlogin');
 /* Having problems with redirecting. Views not recovered when return view('erlogin') is used.*/
 }
 else{
   Session::flash('admin_notlogged', 'You are not logged in as an office personnel. Please login to continue!');
   
-  return redirect()->view('login');
+  return view('login');
 /* Having problems with redirecting. Views not recovered when return view('login') is used.*/
 }
 }
