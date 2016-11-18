@@ -176,7 +176,7 @@ class MainController extends BaseController
     $infoArray = []; 
 
     // Define the Excel spreadsheet headers
-    $infoArray = ['token_num', 'purpose','name','phone_num','start_timestamp','end_timestamp','a_flag','e_flag'];
+    $infoArray[] = ['token_num', 'purpose','name','phone_num','start_timestamp','end_timestamp','a_flag','e_flag'];
 
     // Convert each member of the returned collection into an array,
     // and append it to the payments array.
