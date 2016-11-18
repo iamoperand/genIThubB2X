@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>B2X Service</title>
+	<title>Avionic Solutions</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/style.css" />
@@ -21,15 +21,16 @@
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	<style>
 		.p_credits{
+			font-size: 1.1em;
 			color: #e0e0e0;
 
 		}
 
 		.a_credits{
-			font-size: 1.2em;
+			font-size: 1.3em;
 			text-decoration: none;
 			color: #d6d6d6;
-			font-weight: 700;
+			font-weight: 900;
 		}
 
 		.a_credits:hover{

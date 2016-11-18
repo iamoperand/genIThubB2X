@@ -5,9 +5,20 @@
  * General styles
  */
 body, html {
-    height: 100%;
-    background-repeat: no-repeat;
-    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+    
+
+ /*   background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+
+
+background: rgba(26,142,244,1);
+background: -moz-linear-gradient(top, rgba(26,142,244,1) 0%, rgba(26,142,244,1) 21%, rgba(176,207,243,1) 50%, rgba(13,110,180,1) 100%) fixed;
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(26,142,244,1)), color-stop(21%, rgba(26,142,244,1)), color-stop(50%, rgba(176,207,243,1)), color-stop(100%, rgba(13,110,180,1))) fixed;
+background: -webkit-linear-gradient(top, rgba(26,142,244,1) 0%, rgba(26,142,244,1) 21%, rgba(176,207,243,1) 50%, rgba(13,110,180,1) 100%) fixed;
+background: -o-linear-gradient(top, rgba(26,142,244,1) 0%, rgba(26,142,244,1) 21%, rgba(176,207,243,1) 50%, rgba(13,110,180,1) 100%) fixed;
+background: -ms-linear-gradient(top, rgba(26,142,244,1) 0%, rgba(26,142,244,1) 21%, rgba(176,207,243,1) 50%, rgba(13,110,180,1) 100%) fixed;
+background: linear-gradient(to bottom, rgba(26,142,244,1) 0%, rgba(26,142,244,1) 21%, rgba(176,207,243,1) 50%, rgba(13,110,180,1) 100%) fixed;
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1a8ef4', endColorstr='#0d6eb4', GradientType=0 );
+
 }
 
 .card-container.card {

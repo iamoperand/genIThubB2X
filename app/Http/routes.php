@@ -48,15 +48,22 @@ Route::post('admin',[
    'as'=>'adminLogin'
 	]);
 
-Route::post('employer',[
+Route::post('designation',[
   'uses'=>'MainController@processInfo',
   'as'=>'processInfo'
   ]);
-
-Route::get('employer','MainController@showEmployer');
-Route::get('employee', function(){
-  return view('employee');
+Route::get('erlogin',function(){
+  return view('erlogin');
 });
+Route::get('eelogin',function(){
+  return view('eelogin');
+});
+Route::post('employer',[
+  'uses'=>'MainController@erLogin',
+  'as'=>'erLogin'
+  ]);
+Route::get('employer','MainController@showEmployer');
+Route::get('employee','MainController@showEmployee');
 
 Route::post('start-query',[
  'uses' =>'MainController@startQuery',
@@ -71,9 +78,11 @@ Route::get('export', function(){
   return view('export');
 });
 
-Route::get('/admin/excel', 
+Route::get('excel', 
 [
   'as' => 'admin.info.excel',
   'uses' => 'MainController@infoExcel'
 ]);
+
+Route::get('display','MainController@getDisplay');
 });

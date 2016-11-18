@@ -14,6 +14,7 @@ use DB;
 use Carbon\Carbon;
 use Excel;
 use PDO;
+
 class MainController extends BaseController
 {
     public function login(Request $request)
@@ -104,15 +105,46 @@ class MainController extends BaseController
           if($choice=='employer'){
             $users = DB::table('User')->paginate(7);  
             Session::set('designation',$choice);
-            return view('employer', ['users' => $users]);
-
+            return redirect('erlogin');
           }
           else if($choice=='employee'){
             $users = DB::table('User')->where('e_flag','0')->paginate(7);
             Session::set('designation',$choice);
-            return view('employee', ['users' => $users]);
+            return redirect('employee')->with('users',$users);
+            /* redirect('eelogin'); */
+
           }
 
+
+
+        }
+
+        public function erLogin(Request $request)
+        {
+
+        $name=$request->input('er_name');
+        $pass=$request->input('er_pass');
+    
+       if($name=='admin' && $pass=='123')
+       {
+
+        Session::flash('success_employer', 'You are successfully logged in');
+        $employer_logged = true;
+        Session::set('employer_logged',$employer_logged);
+
+        $users = DB::table('User')->paginate(7);
+        return redirect('employer')->with('users',$users);
+        
+        
+       }
+       else
+       {  
+
+         Session::flash('failure_employer', 'Invalid username/password combination. Please try again!');
+         
+         return view('erlogin');
+       }
+       
 
 
         }
@@ -122,17 +154,28 @@ class MainController extends BaseController
        
         if(Session::has('admin_logged')){
 
-        $var_choice = Session::get('designation');
-         
-        if($var_choice=='employer'){
+        
           $users = DB::table('User')->paginate(7);
          
           return view('employer')->with('users',$users);  
+                
+        }else{
+          
+          return view('login');
         }
-        else if($var_choice=='employee'){
+
+       
+       
+        }
+        public function showEmployee(Request $request)
+       {
+       
+       
+        if(Session::has('admin_logged')){
+
           $users = DB::table('User')->where('e_flag','0')->paginate(7);
           return view('employee')->with('users',$users); 
-        }
+        
         
         }else{
           
@@ -160,6 +203,7 @@ class MainController extends BaseController
         }
         public function infoExcel() {
 
+if(Session::has('employer_logged')){
     // Execute the query used to retrieve the data. In this example
     // we're joining hypothetical users and payments tables, retrieving
     // the payments table's primary key, the user's first and last name, 
@@ -169,7 +213,7 @@ class MainController extends BaseController
     $info = DB::table('User')->get();
 
     
-  
+
     // Initialize the array which will be passed into the Excel
     // generator.
 
@@ -202,4 +246,27 @@ class MainController extends BaseController
 
     })->download('xlsx');
 }
+else if(Session::has('admin_logged'))
+{
+
+Session::flash('employer_notlogged', 'You are not logged in as an Employer. Please login to continue!');
+
+return redirect('erlogin');
+/* Having problems with redirecting. Views not recovered when return view('erlogin') is used.*/
+}
+else{
+  Session::flash('admin_notlogged', 'You are not logged in as an office personnel. Please login to continue!');
+  
+  return redirect()->view('login');
+/* Having problems with redirecting. Views not recovered when return view('login') is used.*/
+}
+}
+
+public function getDisplay(Request $request)
+{
+$users = DB::table('User')->where('e_flag','0')->where('a_flag','1')->get();
+return view('display')->with('users',$users); 
+}
+
+
 }
