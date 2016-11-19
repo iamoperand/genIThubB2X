@@ -79,7 +79,10 @@ Route::get('export', function(){
   return view('export');
 });
 
-Route::get('admin/excel', 'MainController@infoExcel');
+Route::get('excel', [
+ 'uses' =>'MainController@infoExcel',
+  'as' => 'admin.info.excel'
+  ]);
 
 Route::get('display','MainController@getDisplay');
 });

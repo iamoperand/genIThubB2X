@@ -244,7 +244,7 @@ if(Session::has('employer_logged')){
             $sheet->fromArray($infoArray, null, 'A1', false, false);
         });
 
-    })->download('xlsx');
+    })->export('xls');
 }
 else if(Session::has('admin_logged'))
 {
