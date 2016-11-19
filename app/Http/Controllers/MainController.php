@@ -235,10 +235,11 @@ class MainController extends Controller
         }
         public function startQuery(Request $request)
         {
+          $e_name=$request->input('e_name');
          $token=$request->input('token');
          $time=Carbon::now(); 
          $time_now=$time->toDateTimeString();
-         DB::table('User')->where('token_num',$token)->update(['a_flag'=>'1','start_timestamp'=>$time_now]);
+         DB::table('User')->where('token_num',$token)->update(['e_name'=>$e_name,'a_flag'=>'1','start_timestamp'=>$time_now]);
          return redirect()->back();
         }
         public function finishQuery(Request $request)

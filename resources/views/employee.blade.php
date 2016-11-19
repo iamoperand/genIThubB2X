@@ -32,9 +32,10 @@
         <td>{{ $user->purpose }}</td>
         <td>{{ $user->name }}</td>
         <td>{{ $user->phone_num }}</td>
-        <td><form method="post" action="{{route('startQuery')}}"><button type="submit" class="btn btn-danger"  {{ $user->a_flag==true?'disabled':''}}>Accepted</button><input type="hidden" name="token" value="{{ $user->token_num }}"><input type="hidden" name="flag" value="1"><input type="hidden" name="_token" value="{{ csrf_token() }}">
+        
+        <td><form method="post" action="{{route('startQuery')}}"><button type="submit" class="btn btn-danger"  {{ $user->a_flag==true?'disabled':''}}>Accepted</button><input type="hidden" name="token" value="{{ $user->token_num }}"><input type="hidden" name="flag" value="1"><input type="hidden" name="e_name" value="{{ Session::get('ee_name') }}"><input type="hidden" name="flag" value="1"><input type="hidden" name="_token" value="{{ csrf_token() }}">
     <input type="hidden" name="_token" value="{{ Session::token() }}"></form></td>
-        <td><form method="post" action="{{route('finishQuery')}}"><button type="submit" class="btn btn-primary" {{ $user->a_flag==false?'disabled':''}}>Finished</button><input type="hidden" name="token" value="{{ $user->token_num }}"><input type="hidden" name="flag" value="1"><input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <td><form method="post" action="{{route('finishQuery')}}"><button type="submit" class="btn btn-primary" {{ ($user->a_flag==true && $user->e_name === Session::get('ee_name')) ? '' :'disabled'}}>Finished</button><input type="hidden" name="token" value="{{ $user->token_num }}"><input type="hidden" name="flag" value="1"><input type="hidden" name="_token" value="{{ csrf_token() }}">
     <input type="hidden" name="_token" value="{{ Session::token() }}"></form></td>
       </tr>
     

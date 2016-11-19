@@ -91,6 +91,7 @@
         <th>Purpose</th>
         <th>Name</th>
         <th>Phone Number</th>
+        <th>Employee Name</th>
         <th>Start Time</th>
         <th>End Time</th>
       </tr>
@@ -103,6 +104,7 @@
         <td>{{ $user->purpose }}</td>
         <td>{{ $user->name }}</td>
         <td>{{ $user->phone_num }}</td>
+        <td>{{ $user->e_name }}</td>
         <td>{{ $user->start_timestamp }}</td>
         <td>{{ $user->end_timestamp }}</td>
       </tr>
