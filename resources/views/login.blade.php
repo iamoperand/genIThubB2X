@@ -20,20 +20,21 @@
 
       @endif
        
+
       <div class="row">
         <div class="col-md-6">
         <div class="card card-container">
                     <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
             <p id="profile-name" class="profile-name-card" style="font-size:1.5em;color:#ff003f;font-family: 'Lato', sans-serif;">User Login</p>
             <div>&nbsp;</div>
- <form method="post" action="{{ route('submit') }}">
+ <form method="post" action="{{ route('submit') }}" data-parsley-validate>
     <div class="form-group text-center">
       <label for="Name">Username</label>
-      <input type="name" name="name" class="form-control text-center" placeholder="Enter name">
+      <input type="name" name="name" class="form-control text-center" placeholder="Enter name" required="">
     </div>
     <div class="form-group text-center">
       <label for="pwd">Password</label>
-      <input type="password" name="pass" class="form-control text-center" placeholder="Enter password">
+      <input type="password" name="pass" class="form-control text-center" placeholder="Enter password" required="">
     </div>
     <!--
     <div class="checkbox">
@@ -53,14 +54,14 @@
                     <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
             <p id="profile-name" class="profile-name-card" style="font-size:1.5em;color:#ff8300;font-family: 'Lato', sans-serif;">Admin Login</p>
             <div>&nbsp;</div>
- <form method="post" action="{{ route('adminLogin') }}">
+ <form method="post" action="{{ route('adminLogin') }}" data-parsley-validate>
     <div class="form-group text-center">
       <label for="Name">Username</label>
-      <input type="name" name="name" class="form-control text-center"  placeholder="Enter name">
+      <input type="name" name="name" class="form-control text-center"  placeholder="Enter name" required="">
     </div>
     <div class="form-group text-center">
       <label for="pwd">Password</label>
-      <input type="password" name="pass" class="form-control text-center" placeholder="Enter password">
+      <input type="password" name="pass" class="form-control text-center" placeholder="Enter password" required="">
     </div>
     <!--<div class="checkbox">
       <label><input type="checkbox" name="Remember"> Remember me</label>

@@ -8,10 +8,10 @@
 <div class="modal-content">
         <div class="modal-header">
           
-        <h4 class="modal-title">Welcome to B2X Services</h4>
+        <h4 class="modal-title">Welcome to B2X Rohini</h4>
         </div>
         <div class="modal-body text-center" >
-          <p id="myText" style="font-weight:700;font-size:2.2em;color:#ff6600;">Your token number is {{ $info->token_num }}</p>
+          <p id="myText" style="font-weight:700;font-size:2.2em;color:#ff6600;font-family: 'Lato', sans-serif;">Your token number is {{ $info->token_num }}</p>
           <br />
           <br />
           <div class="text-center">
@@ -24,15 +24,15 @@
         </label>
         </div>  
         <br />
-          <div class="text-center" style="font-size:1.2em;font-weight:600;">Here are your details:</div>
+          
           <div class="text-center">
-          <span style="font-size:1.1em;font-weight:700;color:#ff003f"> Name</span> <span style="font-size:1.5em;font-weight:900;">:</span> <span style="font-size:1.2em;font-weight:600;color:#1d33f9;">{{ $info->name }}</span>
+          <span style="font-size:1.1em;font-weight:700;color:#848484;font-family: 'Lato', sans-serif;"> Name</span> <span style="font-size:1.5em;font-weight:900;color:#848484;">:</span> <span style="font-size:1.2em;font-weight:600;color:#282828;">{{ $info->name }}</span>
           <br />
-          <span style="font-size:1.1em;font-weight:700;color:#ff003f"> Purpose</span> <span style="font-size:1.5em;font-weight:900;">:</span> <span style="font-size:1.2em;font-weight:600;color:#1d33f9;">{{ $info->purpose }}</span>
+          <span style="font-size:1.1em;font-weight:700;color:#848484;font-family: 'Lato', sans-serif;"> Purpose</span> <span style="font-size:1.5em;font-weight:900;color:#848484;">:</span> <span style="font-size:1.2em;font-weight:600;color:#282828;">{{ $info->purpose }}</span>
           <br />
-          <span style="font-size:1.1em;font-weight:700;color:#ff003f"> Mobile Number</span> <span style="font-size:1.5em;font-weight:900;">:</span> <span style="font-size:1.2em;font-weight:600;color:#1d33f9;">{{ $info->phone_num }}</span>
+          <span style="font-size:1.1em;font-weight:700;color:#848484;font-family: 'Lato', sans-serif;"> Mobile Number</span> <span style="font-size:1.5em;font-weight:900;color:#848484;">:</span> <span style="font-size:1.2em;font-weight:600;color:#282828;">{{ $info->phone_num }}</span>
           <br />
-          <span style="font-size:1.1em;font-weight:700;color:#ff003f"> Check-in time</span> <span style="font-size:1.5em;font-weight:900;">:</span> <span style="font-size:1.2em;font-weight:600;color:#1d33f9;">{{ $info->start_timestamp }}</span>
+          <span style="font-size:1.1em;font-weight:700;color:#848484;"> Check-in time</span> <span style="font-size:1.5em;font-weight:900;color:#848484;">:</span> <span style="font-size:1.2em;font-weight:600;color:#282828;">{{ $info->start_timestamp }}</span>
           
           </div>
         </div>
