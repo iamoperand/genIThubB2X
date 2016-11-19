@@ -320,16 +320,19 @@ public function eeLogin(Request $request)
 {
 
         $name=$request->input('ee_name');
-        Session::set('ee_name',$name);
-        $pass=$request->input('ee_pass');
-    
-       if($name=='admin' && $pass=='123')
+        
+        $password=$request->input('ee_pass');
+         $pass=Hash::make($password);
+         $employee=Employee::where(['username'=>$name,'password'=>$pass])->get();
+
+       if($employee)
        {
 
         Session::flash('success_employee', 'You are successfully logged in');
         $employee_logged = true;
         Session::set('employee_logged',$employee_logged);
-
+        Session::set('ee_name',$name);
+        
         $users = DB::table('User')->paginate(7);
         return redirect('employee')->with('users',$users);
         
