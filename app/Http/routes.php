@@ -96,9 +96,23 @@ Route::get('logoutEe',[
   'uses'=>'MainController@logoutEe',
   'as'=> 'eeLogout'
   ]);
-
+  //add new employee
  Route::post('add-employee',[
   'uses'=>'MainController@addEmployee',
   'as'=> 'addEmployee'
   ]);
- 
+  //show employee to employeer
+ Route::get('show-employee',[
+ 'uses'=> 'MainController@showEmployeeToEr',
+ 'as' =>'showEmployee'
+  ]);
+ //delete employee
+ Route::post('delete-employee',[
+  'uses'=>'MainController@deleteEe',
+  'as'=>'deleteEe'
+  ]);
+ //changes password
+ Route::post('change-pass',[
+  'uses'=>'MainController@chPassword',
+  'as'=>'chPassword'
+  ]);

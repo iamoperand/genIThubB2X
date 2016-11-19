@@ -15,8 +15,6 @@ use Carbon\Carbon;
 use Excel;
 use PDO;
 use App\Models\Employee;
-
-
 use Validator;
 
 
@@ -366,5 +364,28 @@ public function eeLogin(Request $request)
   Employee::create(['username'=>$name,'password'=>$password]);
   return redirect()->back()->with('info','Account created successfully!!');
  
+ }
+ //show employee to employer
+ public function showEmployeeToEr()
+ {
+  $employees=Employee::get();
+  return view('showtoer')->with('employees',$employees);
+ }
+ public function deleteEe(Request $request)
+ {
+  $name=$request->input('ename');
+  Employee::where('username',$name)->delete();
+
+  return redirect()->back()->with('info','Account deleted successfully!!');
+
+ }
+ public function chPassword(Request $request)
+ {
+  $name=$request->input('ename');
+  $password=$request->input('password');//verify new and confirm new password
+  $pass=Hash::make($password);
+  Employee::where('username',$name)->update(['password'=>$pass]);
+
+  return redirect()->back()->with('info','Password changed successfully!!');
  }
 }

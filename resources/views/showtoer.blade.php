@@ -42,7 +42,45 @@
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <strong>Success:</strong> {{Session::get('info')}}
         </div>
- @endif
+ @endif  
+  <!-- Modal -->
+  <div class="modal fade" id="chPassword" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Change Password</h4>
+        </div>
+        <div class="modal-body">
+           <form  method="post" action="{{ route('chPassword') }}">
+            <div class="form-group">
+            <label for="name" class="control-label">New Password</label>
+            <input type="name" placehoder="password" name="password" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="name" class="control-label">Confirm Password</label>
+            <input type="name" placehoder="Confirm password" name="newpassword" class="form-control">
+          </div>
+        <div class="form-group" >
+            <button class="btn btn-primary btn-lg" type="submit">Change</button>
+          
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="_token" value="{{ Session::token() }}"> 
+            <input type="hidden" id="chpass" name="ename" value="">
+        </div>
+        
+        <div class="modal-footer">
+           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div> 
+           
+        
+      </form>
+      </div>
+      </div>
+    </div>
+  </div>
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -79,40 +117,36 @@
       </div>
       </div>
     </div>
-  </div>
+  </div>    
 <div class="container" style="background-color:white;">
-
-  <div class="text-center" style="font-family: 'Lato', sans-serif;font-size:1.7em;font-weight:700;margin-top:10px;color:#6d6d6d;">Customer Information <span style="color:#020000;">(Permanent)</span></div>
-     <p></p>           
+  
+  <div class="text-center" style="font-family: 'Lato', sans-serif;font-size:1.7em;font-weight:700;margin-top:10px;color:#6d6d6d;"> Employee Information </div>
+  <p></p>            
   <table class="table table-bordered table-hover">
     <thead>
       <tr>
-        <th>Token Number</th>
-        <th>Purpose</th>
-        <th>Name</th>
-        <th>Phone Number</th>
-        <th>Start Time</th>
-        <th>End Time</th>
+        <th>Username</th>
+        <th>Change Password</th>
+        <th>Delete</th>
       </tr>
     </thead>
 <tbody>
-@foreach ($users as $user)
+@foreach ($employees as $employee)
     
       <tr>
-        <td><span style="font-size:1.2em;font-weight:700;">{{ $user->token_num }}</span></td>
-        <td>{{ $user->purpose }}</td>
-        <td>{{ $user->name }}</td>
-        <td>{{ $user->phone_num }}</td>
-        <td>{{ $user->start_timestamp }}</td>
-        <td>{{ $user->end_timestamp }}</td>
+        <td><span style="font-size:1.2em;font-weight:700;">{{ $employee->username }}</span></td>
+        <td><button type="button" class="btn btn-danger change" data-toggle="modal" data-target="#chPassword" data-id="{{ $employee->username }}" >Change Password</button></td>
+        <td><form method="post" action="{{ route('deleteEe')}}"><button type="submit" class="btn btn-primary">Delete </button><input type="hidden" name="ename" value="{{ $employee->username }}"><input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="_token" value="{{ Session::token() }}"></form></td>
       </tr>
     
 @endforeach
 
   </tbody>
   </table>
+
   <div class="text-center">
-{!! $users->links(); !!}
 </div>
 </div>
+<script src="{{ asset('js/modalJS.js') }}"></script>
 @stop
