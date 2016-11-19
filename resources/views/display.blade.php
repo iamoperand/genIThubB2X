@@ -36,6 +36,6 @@
 </div>
 @endforeach
 </div>
-<script src="{{ asset('js/refresh.js') }}"></script>
+<script src="{{ asset('js/refresh5.js') }}"></script>
 @stop
 
