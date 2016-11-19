@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use View;
 use App\Models\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
+
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
@@ -14,14 +14,24 @@ use DB;
 use Carbon\Carbon;
 use Excel;
 use PDO;
+use Validator;
 
-class MainController extends BaseController
+
+class MainController extends Controller
 {
     public function login(Request $request)
     {
+        $this->validate($request, array(
+          'name' => 'required|max:255',
+          'pass' => 'required|max:255'
+
+        )); 
+
+
            $name=$request->input('name');
            $pass=$request->input('pass');
-    
+      
+
        if($name=='avionicuser@gmail.com' && $pass=='123')
        {
 
@@ -38,7 +48,11 @@ class MainController extends BaseController
 
     public function enquiry(Request $request)
     {
+      $this->validate($request, array(
+          'purpose' => 'required',
+          
 
+        )); 
         $purpose=$request->input('purpose');
 
         
@@ -50,7 +64,24 @@ class MainController extends BaseController
     public function postInfo(Request $request)
     {
 
+   
+   $validator = Validator::make($request->all(), [
+             'name' => 'required|max:255',
+          'num' => 'required|max:11|min:8',
+        ]);
+
+        if ($validator->fails()) {
+          $purpose = Session::get('purpose_key');
+            return view('info')->with('purpose_of_visit', $purpose);
+        }else{
+
+
+
+        }
+
     $purpose=Session::get('purpose_key');
+   
+
     $purpose_name=$request->input('name');
     $purpose_mobile=$request->input('num');
     $time=Carbon::now(); 
@@ -65,6 +96,7 @@ class MainController extends BaseController
     $data = DB::table('User')
             ->where('name', '=', $purpose_name)
             ->where('phone_num', '=', $purpose_mobile)
+            ->where('start_timestamp', '=', $time_now)
             ->get();
 
     return view('infogen')->with('data', $data);
@@ -73,6 +105,13 @@ class MainController extends BaseController
             
     public function loginAdmin(Request $request)
     {
+        
+      $this->validate($request, array(
+          'name' => 'required|max:255',
+          'pass' => 'required|max:255'
+
+        )); 
+
        $name=$request->input('name');
        $pass=$request->input('pass');
     
@@ -99,7 +138,10 @@ class MainController extends BaseController
 
         public function processInfo(Request $request)
         {
-
+          $this->validate($request, array(
+          'choice' => 'required',
+          
+        )); 
           $choice = $request->input('choice');
           
           if($choice=='employer'){
@@ -121,7 +163,11 @@ class MainController extends BaseController
 
         public function erLogin(Request $request)
         {
+        $this->validate($request, array(
+          'er_name' => 'required|max:255',
+          'er_pass' => 'required|max:255'
 
+        )); 
         $name=$request->input('er_name');
         $pass=$request->input('er_pass');
     

@@ -17,12 +17,12 @@
                         
             <div class="text-center" style="font-size:1.8em;font-weight:700;font-family: 'Lato', sans-serif;">Purpose of Visit</div>
  <div>&nbsp;</div>
- <form method="post" action="{{ route('purpose') }}">
+ <form method="post" action="{{ route('purpose') }}" data-parsley-validate>
   <div class="container-fluid">
   <div class="row">
 
 
-    <select name="purpose" class="form-control">
+    <select name="purpose" class="form-control" required="">
       <option value="General-Enquiry">General-Enquiry</option>
       <option value="Repair">Repair</option>
       <option value="Accessories">Accessories</option>
