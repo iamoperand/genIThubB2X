@@ -15,7 +15,15 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a type="button" data-toggle="modal" data-target="#myModal">Add Employee</a></li>
+        <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Employee
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+           <li><a type="button" data-toggle="modal" data-target="#myModal">Add Employee</a></li>
+           <li><a href="{{ route('showEmployee') }}">Show Employee</a></li>
+        </ul>
+      </li>
+       
         <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Export
         <span class="caret"></span></a>
