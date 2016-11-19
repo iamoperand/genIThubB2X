@@ -362,7 +362,7 @@ public function eeLogin(Request $request)
    $time=Carbon::now(); 
    $time_now=$time->toDateTimeString();
   Employee::create(['username'=>$name,'password'=>$password]);
-  return redirect()->back()->with('info','Account created successfully!!');
+  return redirect('show-employee')->with('info','Account created successfully!!');
  
  }
  //show employee to employer
