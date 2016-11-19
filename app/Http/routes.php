@@ -63,6 +63,7 @@ Route::post('employer',[
   'as'=>'erLogin'
   ]);
 Route::get('employer','MainController@showEmployer');
+
 Route::get('employee','MainController@showEmployee');
 
 Route::post('start-query',[
@@ -86,3 +87,16 @@ Route::get('excel',
 
 Route::get('display','MainController@getDisplay');
 });
+ //Employee login 
+Route::post('employee',[
+  'uses'=>'MainController@eeLogin',
+  'as'=>'eeLogin'
+  ]);
+ //employee logout
+Route::get('logoutEe',[
+  'uses'=>'MainController@logoutEe',
+  'as'=> 'eeLogout'
+  ]);
+/*
+ Route::get('add-employee','')
+ */

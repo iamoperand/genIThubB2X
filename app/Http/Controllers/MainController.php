@@ -110,7 +110,7 @@ class MainController extends BaseController
           else if($choice=='employee'){
             $users = DB::table('User')->where('e_flag','0')->paginate(7);
             Session::set('designation',$choice);
-            return redirect('employee')->with('users',$users);
+            return redirect('eelogin')->with('users',$users); 
             /* redirect('eelogin'); */
 
           }
@@ -267,6 +267,39 @@ public function getDisplay(Request $request)
 $users = DB::table('User')->where('e_flag','0')->where('a_flag','1')->get();
 return view('display')->with('users',$users); 
 }
+//employee login 
+public function eeLogin(Request $request)
+{
 
+        $name=$request->input('ee_name');
+        Session::set('ee_name',$name);
+        $pass=$request->input('ee_pass');
+    
+       if($name=='admin' && $pass=='123')
+       {
+
+        Session::flash('success_employee', 'You are successfully logged in');
+        $employee_logged = true;
+        Session::set('employee_logged',$employee_logged);
+
+        $users = DB::table('User')->paginate(7);
+        return redirect('employee')->with('users',$users);
+        
+        
+       }
+       else
+       {  
+
+         Session::flash('failure_employee', 'Invalid username/password combination. Please try again!');
+         
+         return view('eelogin');
+       }
+}
+//logout employee and redirect to employee login
+ public function logoutEe()
+ {
+  Session::forget('ee_name');
+  return redirect('eelogin');
+ }
 
 }

@@ -15,16 +15,12 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <!--<li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Page 1</a></li>
-        <li><a href="#">Page 2</a></li>
-        <li><a href="#">Page 3</a></li>-->
+        <li><a href="{{ url('add-employee') }}">Add Employee</a></li>
         <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Export
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="{{url('export')}}">Export to Excel</a></li>
-          
         </ul>
       </li>
       </ul>
