@@ -96,6 +96,9 @@ Route::get('logoutEe',[
   'uses'=>'MainController@logoutEe',
   'as'=> 'eeLogout'
   ]);
-/*
- Route::get('add-employee','')
- */
+
+ Route::post('add-employee',[
+  'uses'=>'MainController@addEmployee',
+  'as'=> 'addEmployee'
+  ]);
+ 

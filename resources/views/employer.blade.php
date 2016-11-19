@@ -15,7 +15,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="{{ url('add-employee') }}">Add Employee</a></li>
+        <li><a type="button" data-toggle="modal" data-target="#myModal">Add Employee</a></li>
         <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Export
         <span class="caret"></span></a>
@@ -29,6 +29,49 @@
   </div>
 </nav>
 </div>
+ @if (Session::has('info'))
+        <div class="alert alert-success fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success:</strong> {{Session::get('info')}}
+        </div>
+ @endif
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add New Employee</h4>
+        </div>
+        <div class="modal-body">
+           <form  method="post" action="{{ route('addEmployee') }}">
+            <div class="form-group">
+            <label for="name" class="control-label">Your Name</label>
+            <input type="name" name="name" class="form-control">
+          </div>
+          <div class="form-group">
+            <label  for="pwd" class="control-label">Password</label>
+            <input type="password" name="password" class="form-control">
+          </div>
+        <div class="form-group">
+            <button class="btn btn-primary btn-lg" type="submit">Add Employee</button>
+          
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="_token" value="{{ Session::token() }}"> 
+        </div>
+        
+        <div class="modal-footer">
+           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div> 
+           
+        
+      </form>
+      </div>
+      </div>
+    </div>
+  </div>
 <div class="container" style="background-color:white;">
 
   <div class="text-center" style="font-family: 'Lato', sans-serif;font-size:1.7em;font-weight:700;margin-top:10px;color:#6d6d6d;">Customer Information <span style="color:#020000;">(Permanent)</span></div>

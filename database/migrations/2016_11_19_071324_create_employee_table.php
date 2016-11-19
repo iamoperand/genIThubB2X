@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Hash;
 class CreateEmployeeTable extends Migration
 {
     /**
@@ -14,7 +13,7 @@ class CreateEmployeeTable extends Migration
     {
         Schema::create('Employee',function (Blueprint $table) {
             $table->string('username');
-            $table->Hash::make('password');
+            $table->string('password');
         });
     }
 

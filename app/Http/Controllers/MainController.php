@@ -4,18 +4,20 @@ namespace App\Http\Controllers;
 use View;
 use App\Models\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Session; 
 use DB;
 use Carbon\Carbon;
 use Excel;
 use PDO;
+use App\Models\Employee;
 
-class MainController extends BaseController
+
+class MainController extends Controller
 {
     public function login(Request $request)
     {
@@ -301,5 +303,20 @@ public function eeLogin(Request $request)
   Session::forget('ee_name');
   return redirect('eelogin');
  }
-
+  // add new employee
+ public function addEmployee(Request $request)
+ {
+   $this->validate($request,[
+   'name' => 'required',
+   'password' => 'required',
+   ]);
+   $password=$request->input('password');
+   $password=Hash::make($password);
+   $name=$request->input('name');
+   $time=Carbon::now(); 
+   $time_now=$time->toDateTimeString();
+  Employee::create(['username'=>$name,'password'=>$password]);
+  return redirect()->back()->with('info','Account created successfully!!');
+ 
+ }
 }
