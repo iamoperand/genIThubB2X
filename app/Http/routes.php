@@ -22,17 +22,13 @@ Route::post('enquiry',[
 	'uses'=>'MainController@login',
 	'as'=> 'submit'
   ]);
-Route::get('enquiry',function() {
-  return view('enquiry');
-});
+Route::get('enquiry','MainController@getEnquiry');
 Route::post('info',[
 	'uses'=>'MainController@enquiry',
 	'as'=> 'purpose'
   ]);
 
-Route::get('info',function() {
-	return view('info');
-});
+Route::get('info','MainController@getInfo');
 
 
 Route::get('infogen', function(){
@@ -47,14 +43,13 @@ Route::post('admin',[
   'uses'=>'MainController@loginAdmin',
    'as'=>'adminLogin'
 	]);
-
+Route::get('admin', 'MainController@getAdmin');
 Route::post('designation',[
   'uses'=>'MainController@processInfo',
   'as'=>'processInfo'
   ]);
-Route::get('erlogin',function(){
-  return view('erlogin');
-});
+Route::get('erlogin','MainController@geterlogin');
+Route::get('eelogin','MainController@geteelogin');
 Route::get('eelogin',function(){
   return view('eelogin');
 });

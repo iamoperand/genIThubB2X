@@ -16,6 +16,14 @@
             <strong>Failed:</strong> {{Session::get('employee_notlogged')}}
         </div>
 
+      @endif 
+
+      @if (Session::has('logged_as'))
+        <div class="alert alert-info fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Information:</strong> {{Session::get('logged_as')}}
+        </div>
+
       @endif  
       <div class="row">
         <div class="col-md-12">
