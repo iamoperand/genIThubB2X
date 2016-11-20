@@ -323,10 +323,12 @@ public function eeLogin(Request $request)
         $name=$request->input('ee_name');
         
         $password=$request->input('ee_pass');
-         $pass=Hash::make($password);
-         $employee=Employee::where(['username'=>$name,'password'=>$pass])->get();
+        
 
-       if($employee)
+         
+        $employee=Employee::where('username',$name)->where('password',$password)->get();
+        
+       if(count($employee))
        {
 
         Session::flash('success_employee', 'You are successfully logged in');
@@ -361,7 +363,7 @@ public function eeLogin(Request $request)
    'password' => 'required',
    ]);
    $password=$request->input('password');
-   $password=Hash::make($password);
+   
    $name=$request->input('name');
    $time=Carbon::now(); 
    $time_now=$time->toDateTimeString();
@@ -387,8 +389,8 @@ public function eeLogin(Request $request)
  {
   $name=$request->input('ename');
   $password=$request->input('password');//verify new and confirm new password
-  $pass=Hash::make($password);
-  Employee::where('username',$name)->update(['password'=>$pass]);
+  
+  Employee::where('username',$name)->update(['password'=>$password]);
 
   return redirect()->back()->with('info','Password changed successfully!!');
  }

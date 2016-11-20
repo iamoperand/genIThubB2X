@@ -48,5 +48,5 @@
 {!! $users->links(); !!}
 </div>
 </div>
-<script src="{{ asset('js/refresh5s.js') }}"></script>
+<script src="{{ asset('js/refresh7s.js') }}"></script>
 @stop
