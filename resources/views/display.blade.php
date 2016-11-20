@@ -13,7 +13,7 @@
 
 <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
             
-<div class="text-center"></div>
+<div class="text-center">Counter Name: {{$user->e_name}}</div>
 <table class="table table-bordered table-hover">
     
 <tbody> 
