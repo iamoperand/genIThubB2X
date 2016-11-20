@@ -235,10 +235,11 @@ class MainController extends Controller
         }
         public function startQuery(Request $request)
         {
+          $e_name=$request->input('e_name');
          $token=$request->input('token');
          $time=Carbon::now(); 
          $time_now=$time->toDateTimeString();
-         DB::table('User')->where('token_num',$token)->update(['a_flag'=>'1','start_timestamp'=>$time_now]);
+         DB::table('User')->where('token_num',$token)->update(['e_name'=>$e_name,'a_flag'=>'1','start_timestamp'=>$time_now]);
          return redirect()->back();
         }
         public function finishQuery(Request $request)
@@ -246,7 +247,7 @@ class MainController extends Controller
          $token=$request->input('token');
           $time=Carbon::now(); 
          $time_now=$time->toDateTimeString();
-         DB::table('user')->where('token_num',$token)->update(['e_flag'=>'1','end_timestamp'=>$time_now]);
+         DB::table('User')->where('token_num',$token)->update(['e_flag'=>'1','end_timestamp'=>$time_now]);
          return redirect()->back();
         }
         public function infoExcel() {
@@ -322,6 +323,7 @@ public function eeLogin(Request $request)
         $name=$request->input('ee_name');
         
         $password=$request->input('ee_pass');
+<<<<<<< HEAD
          $pass=Hash::make($password);
          dd($pass);
        /*
@@ -329,6 +331,14 @@ public function eeLogin(Request $request)
          dd($employee);
       
        if($employee)
+=======
+        
+
+         
+        $employee=Employee::where('username',$name)->where('password',$password)->get();
+        
+       if(count($employee))
+>>>>>>> 88efdf7f8033fe43de33f65f5259ffc46d7edf3a
        {
         dd($employee);
       
@@ -367,12 +377,12 @@ public function eeLogin(Request $request)
    'password' => 'required',
    ]);
    $password=$request->input('password');
-   $password=Hash::make($password);
+   
    $name=$request->input('name');
    $time=Carbon::now(); 
    $time_now=$time->toDateTimeString();
   Employee::create(['username'=>$name,'password'=>$password]);
-  return redirect()->back()->with('info','Account created successfully!!');
+  return redirect('show-employee')->with('info','Account created successfully!!');
  
  }
  //show employee to employer
@@ -393,8 +403,8 @@ public function eeLogin(Request $request)
  {
   $name=$request->input('ename');
   $password=$request->input('password');//verify new and confirm new password
-  $pass=Hash::make($password);
-  Employee::where('username',$name)->update(['password'=>$pass]);
+  
+  Employee::where('username',$name)->update(['password'=>$password]);
 
   return redirect()->back()->with('info','Password changed successfully!!');
  }

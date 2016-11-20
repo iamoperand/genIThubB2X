@@ -19,8 +19,11 @@ class EmployerData extends Migration
             $table->char('phone_num',10);
             $table->dateTime('start_timestamp');
             $table->dateTime('end_timestamp');
+            $table->string('e_name');
+            
             $table->boolean('a_flag')->default(false);
             $table->boolean('e_flag')->default(false);
+
         });
         
     }

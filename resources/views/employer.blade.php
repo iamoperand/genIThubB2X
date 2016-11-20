@@ -51,20 +51,20 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add New Employee</h4>
+          <h4 class="modal-title text-center">Add New Employee</h4>
         </div>
         <div class="modal-body">
-           <form  method="post" action="{{ route('addEmployee') }}">
-            <div class="form-group">
-            <label for="name" class="control-label">Your Name</label>
-            <input type="name" name="name" class="form-control">
+           <form method="post" action="{{ route('addEmployee') }}">
+            <div class="form-group text-center">
+            <label for="name" class="control-label">Username</label>
+            <input type="name" name="name" class="form-control text-center">
           </div>
-          <div class="form-group">
-            <label  for="pwd" class="control-label">Password</label>
-            <input type="password" name="password" class="form-control">
+          <div class="form-group text-center">
+            <label for="pwd" class="control-label">Password</label>
+            <input type="password" name="password" class="form-control text-center">
           </div>
-        <div class="form-group">
-            <button class="btn btn-primary btn-lg" type="submit">Add Employee</button>
+        <div class="form-group text-center">
+            <button class="btn btn-success btn-md" type="submit">Add Employee</button>
           
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="_token" value="{{ Session::token() }}"> 
@@ -91,6 +91,7 @@
         <th>Purpose</th>
         <th>Name</th>
         <th>Phone Number</th>
+        <th>Employee Name</th>
         <th>Start Time</th>
         <th>End Time</th>
       </tr>
@@ -103,6 +104,7 @@
         <td>{{ $user->purpose }}</td>
         <td>{{ $user->name }}</td>
         <td>{{ $user->phone_num }}</td>
+        <td>{{ $user->e_name }}</td>
         <td>{{ $user->start_timestamp }}</td>
         <td>{{ $user->end_timestamp }}</td>
       </tr>
