@@ -36,7 +36,7 @@ class MainController extends Controller
 
        if($name=='avionicuser@gmail.com' && $pass=='123')
        {
-
+        Session::set('user_logged',true);
         Session::flash('success_user', 'You are successfully logged in');
        	return view('enquiry');
        }
@@ -47,6 +47,27 @@ class MainController extends Controller
          return view('login');
        }
     }
+
+    public function getEnquiry(Request $request){
+
+  if(Session::has('user_logged'))
+      {
+        
+
+        return view('enquiry');
+}
+else{
+Session::flash('failure', 'You are not logged in as a user. Please login to continue!');
+return view('login');
+
+}
+
+
+
+
+
+    }
+
 
     public function enquiry(Request $request)
     {
@@ -63,9 +84,50 @@ class MainController extends Controller
 
 
     }
-    public function postInfo(Request $request)
+
+    public function getInfo(Request $request){
+
+     
+
+
+if(Session::has('user_logged'))
+      {
+        
+        if(Session::has('purpose_key'))
+      {
+        
+  $purpose = Session::get('purpose_key');
+        return view('info')->with('purpose_of_visit', $purpose);
+}
+else{
+Session::flash('failure', 'Please choose the purpose of your visit, to continue!');
+return view('enquiry');
+
+}
+     }      
+
+else{
+
+Session::flash('failure', 'You are not logged in as a user. Please login to continue!');
+return view('login');
+}
+
+  
+ 
+
+
+
+
+    
+
+
+
+    }
+        public function postInfo(Request $request)
     {
 
+if(Session::has('user_logged')){
+      
    
    $validator = Validator::make($request->all(), [
              'name' => 'required|max:255',
@@ -102,9 +164,14 @@ class MainController extends Controller
             ->get();
 
     return view('infogen')->with('data', $data);
+  }else{
+
+    Session::flash('failure', 'You are not logged in as a user. Please login to continue!');
+return view('login');
+  }
             
     }
-            
+
     public function loginAdmin(Request $request)
     {
         
@@ -120,7 +187,7 @@ class MainController extends Controller
        if($name=='avionicsolutions@gmail.com' && $pass=='123')
        {
 
-        Session::flash('success_admin', 'You are successfully logged in');
+        Session::flash('success_admin', 'You are successfully logged in!');
 
         $logged = true;
         Session::set('admin_logged',$logged);
@@ -137,7 +204,21 @@ class MainController extends Controller
        
        
         }
+        public function getAdmin(Request $request){
 
+      if(Session::has('admin_logged'))
+      {
+        Session::flash('success_admin', ' You are successfully logged in!');
+
+        return view('admin');
+}
+else{
+Session::flash('failure', 'You are not logged in as an office personnel. Please login to continue!');
+return view('login');
+
+}
+
+    }     
         public function processInfo(Request $request)
         {
           $this->validate($request, array(
@@ -154,7 +235,7 @@ class MainController extends Controller
           else if($choice=='employee'){
             $users = DB::table('User')->where('e_flag','0')->paginate(7);
             Session::set('designation',$choice);
-            return redirect('eelogin')->with('users',$users); 
+            return redirect('eelogin'); 
             /* redirect('eelogin'); */
 
           }
@@ -162,7 +243,64 @@ class MainController extends Controller
 
 
         }
+        public function geterlogin(Request $request){
 
+
+           if(Session::has('admin_logged'))
+      {
+        if(Session::get('designation')=='employer'){
+         
+        return view('erlogin');
+        }
+        else if(Session::get('designation')=='employee'){
+ Session::flash('logged_as', 'You have choosen employee as your designation!');          
+return view('eelogin');
+
+        }else{
+
+          Session::flash('failure', 'Please choose your designation to continue!');
+    return view('admin');
+
+        }
+}
+else{
+Session::flash('failure', 'You are not logged in as an office personnel. Please login to continue!');
+return view('login');
+
+}
+
+
+
+        }
+        public function geteelogin(Request $request){
+
+
+           if(Session::has('admin_logged'))
+      {
+        if(Session::get('designation')=='employee'){
+         
+        return view('eelogin');
+        }
+        else if(Session::get('designation')=='employer'){
+ Session::flash('logged_as', 'You have choosen employer as your designation!');          
+return view('erlogin');
+
+        }else{
+
+          Session::flash('failure', 'Please choose your designation to continue!');
+    return view('admin');
+
+        }
+}
+else{
+Session::flash('failure', 'You are not logged in as an office personnel. Please login to continue!');
+return view('login');
+
+}
+
+
+
+        }
         public function erLogin(Request $request)
         {
         $this->validate($request, array(
@@ -202,13 +340,19 @@ class MainController extends Controller
        
         if(Session::has('admin_logged')){
 
-        
+        if(Session::has('employer_logged')){
           $users = DB::table('User')->paginate(7);
          
           return view('employer')->with('users',$users);  
-                
+                }else{
+
+    Session::flash('employer_notlogged', 'You are not logged in as an Employer. Please login to continue!');
+
+return view('erlogin');
+                }
         }else{
           
+          Session::flash('admin_notlogged', 'You are not logged in as an office personnel. Please login to continue!');
           return view('login');
         }
 
@@ -220,13 +364,19 @@ class MainController extends Controller
        
        
         if(Session::has('admin_logged')){
-
+          if(Session::has('employee_logged')){
           $users = DB::table('User')->where('e_flag','0')->paginate(7);
           return view('employee')->with('users',$users); 
-        
+          
+        }else{
+          Session::flash('employee_notlogged', 'You are not logged in as an Employee. Please login to continue!');
+
+return view('eelogin');
+        }
+          
         
         }else{
-          
+          Session::flash('admin_notlogged', 'You are not logged in as an office personnel. Please login to continue!');
           return view('login');
         }
 
@@ -319,7 +469,11 @@ return view('display')->with('users',$users);
 //employee login 
 public function eeLogin(Request $request)
 {
+        $this->validate($request, array(
+          'ee_name' => 'required|max:255',
+          'ee_pass' => 'required|max:255'
 
+        )); 
         $name=$request->input('ee_name');
         
         $password=$request->input('ee_pass');
@@ -355,14 +509,15 @@ public function eeLogin(Request $request)
  public function logoutEe()
  {
   Session::forget('ee_name');
+  Session::forget('employee_logged');
   return redirect('eelogin');
  }
   // add new employee
  public function addEmployee(Request $request)
  {
    $this->validate($request,[
-   'name' => 'required',
-   'password' => 'required',
+   'name' => 'required|max:255',
+   'password' => 'required|max:255',
    ]);
    $password=$request->input('password');
    
@@ -389,11 +544,25 @@ public function eeLogin(Request $request)
  }
  public function chPassword(Request $request)
  {
-  $name=$request->input('ename');
-  $password=$request->input('password');//verify new and confirm new password
+
+  $this->validate($request,[
+   'password' => 'required|max:255',
+   'confirmpass' => 'required|max:255',
+   
+   ]);
+    $name=$request->input('ename');
+  $password=$request->input('password'); //verify new and confirm new password
+  $confirmpass = $request->input('confirmpass'); 
+  if($password===$confirmpass){
   
   Employee::where('username',$name)->update(['password'=>$password]);
 
   return redirect()->back()->with('info','Password changed successfully!!');
+ }else{
+  return redirect()->back()->with('info','Password does not match. Please try again!');
+  
  }
+
+ 
+}
 }

@@ -16,6 +16,14 @@
             <strong>Failed:</strong> {{Session::get('employee_notlogged')}}
         </div>
 
+      @endif 
+
+      @if (Session::has('logged_as'))
+        <div class="alert alert-info fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Information:</strong> {{Session::get('logged_as')}}
+        </div>
+
       @endif  
       <div class="row">
         <div class="col-md-12">
@@ -23,14 +31,14 @@
                     <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
             <p id="profile-name" class="profile-name-card" style="font-size:1.5em;color:#ff003f;font-family: 'Lato', sans-serif;">Employee Login</p>
             <div>&nbsp;</div>
- <form method="post" action="{{ route('eeLogin') }}">
+ <form method="post" action="{{ route('eeLogin') }}" data-parsley-validate>
     <div class="form-group text-center">
       <label for="Name">Username</label>
-      <input type="name" name="ee_name" class="form-control text-center" placeholder="Enter name">
+      <input type="name" name="ee_name" class="form-control text-center" placeholder="Enter name" required="" data-parsley-maxlength="255">
     </div>
     <div class="form-group text-center">
       <label for="pwd">Password</label>
-      <input type="password" name="ee_pass" class="form-control text-center" placeholder="Enter password">
+      <input type="password" name="ee_pass" class="form-control text-center" placeholder="Enter password" required="" data-parsley-maxlength="255">
     </div>
     <!--
     <div class="checkbox">

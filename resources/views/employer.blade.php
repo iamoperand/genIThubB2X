@@ -11,7 +11,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Options</a>
+      <a class="navbar-brand" style="text-decoration:none;pointer-events:none;color:#3A3A3A;" href="#">Options</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -19,9 +19,9 @@
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Employee
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
-           <li><a type="button" data-toggle="modal" data-target="#myModal">Add Employee</a></li>
+           <li><a style="cursor:pointer;" data-toggle="modal" data-target="#myModal">Add Employee</a></li>
            <li><a href="{{ route('showEmployee') }}">Show Employee</a></li>
-        </ul>
+        </ul> 
       </li>
        
         <li class="dropdown">
@@ -54,14 +54,14 @@
           <h4 class="modal-title text-center">Add New Employee</h4>
         </div>
         <div class="modal-body">
-           <form method="post" action="{{ route('addEmployee') }}">
+           <form method="post" action="{{ route('addEmployee') }}" data-parsley-validate>
             <div class="form-group text-center">
             <label for="name" class="control-label">Username</label>
-            <input type="name" name="name" class="form-control text-center">
+            <input type="name" name="name" class="form-control text-center" required="" data-parsley-maxlength="255">
           </div>
           <div class="form-group text-center">
             <label for="pwd" class="control-label">Password</label>
-            <input type="password" name="password" class="form-control text-center">
+            <input type="password" name="password" class="form-control text-center" required="" data-parsley-maxlength="255">
           </div>
         <div class="form-group text-center">
             <button class="btn btn-success btn-md" type="submit">Add Employee</button>
