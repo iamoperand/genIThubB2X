@@ -23,12 +23,12 @@
                         
             <div class="text-center" style="font-size:1.3em;font-weight:700;">Who are you?</div>
             <div>&nbsp;</div>
- <form method="post" action="{{ route('processInfo') }}">
+ <form method="post" action="{{ route('processInfo') }}" data-parsley-validate>
   <div class="container-fluid">
   <div class="row">
 
 
-    <select name="choice" class="form-control" data-parsley-validate>
+    <select name="choice" class="form-control">
       <option value="employer">Employer</option>
       <option value="employee">Employee</option>
     </select>

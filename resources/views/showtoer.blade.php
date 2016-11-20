@@ -43,28 +43,35 @@
             <strong>Success:</strong> {{Session::get('info')}}
         </div>
  @endif  
+
+ @if (Session::has('error'))
+        <div class="alert alert-danger fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Failure:</strong> {{Session::get('error')}}
+        </div>
+ @endif
   <!-- Modal -->
   <div class="modal fade" id="chPassword" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header text-center">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Change Password</h4>
+          <h4 class="modal-title text-center">Change Password</h4>
         </div>
-        <div class="modal-body">
-           <form  method="post" action="{{ route('chPassword') }}">
-            <div class="form-group">
-            <label for="name" class="control-label">New Password</label>
-            <input type="name" placehoder="password" name="password" class="form-control">
+        <div class="modal-body text-center">
+           <form  method="post" action="{{ route('chPassword') }}" data-parsley-validate>
+            <div class="form-group text-center">
+            <label for="name" class="control-label text-center">New Password</label>
+            <input type="password" placehoder="Password" name="password" id="password" class="form-control text-center" required="" data-parsley-maxlength="255">
           </div>
-          <div class="form-group">
+          <div class="form-group text-center">
             <label for="name" class="control-label">Confirm Password</label>
-            <input type="name" placehoder="Confirm password" name="newpassword" class="form-control">
+            <input type="password" placehoder="Confirm password" name="confirmpass" class="form-control text-center" required="" data-parsley-maxlength="255" data-parsley-equalto="#password">
           </div>
-        <div class="form-group" >
-            <button class="btn btn-primary btn-lg" type="submit">Change</button>
+        <div class="form-group text-center">
+            <button class="btn btn-success btn-md" type="submit">Change</button>
           
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="_token" value="{{ Session::token() }}"> 

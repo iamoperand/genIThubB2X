@@ -54,14 +54,14 @@
           <h4 class="modal-title text-center">Add New Employee</h4>
         </div>
         <div class="modal-body">
-           <form method="post" action="{{ route('addEmployee') }}">
+           <form method="post" action="{{ route('addEmployee') }}" data-parsley-validate>
             <div class="form-group text-center">
             <label for="name" class="control-label">Username</label>
-            <input type="name" name="name" class="form-control text-center">
+            <input type="name" name="name" class="form-control text-center" required="" data-parsley-maxlength="255">
           </div>
           <div class="form-group text-center">
             <label for="pwd" class="control-label">Password</label>
-            <input type="password" name="password" class="form-control text-center">
+            <input type="password" name="password" class="form-control text-center" required="" data-parsley-maxlength="255">
           </div>
         <div class="form-group text-center">
             <button class="btn btn-success btn-md" type="submit">Add Employee</button>
