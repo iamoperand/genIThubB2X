@@ -1,3 +1,5 @@
+
+	<link rel="stylesheet" href="" />
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -11,20 +13,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Error 404" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/style.css" />
-	<link href="css/facebox.css" media="screen" rel="stylesheet" type="text/css" />
-
+	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="js/form.js"></script>
-	<script src="js/userdefine.js"></script>
-	
-	<script src="js/facebox.js"></script>
-	<script src="js/facebox_jquery.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link href="css/style404.css" rel="stylesheet" type="text/css" media="all" />
+<link href="{{ asset('css/style404.css') }}" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
 <header role="banner">
@@ -40,7 +35,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <div class="wrap">
 <div class="main">
 	<div class="banner">
-		<img src="images/banner.png" alt="" />
+		<img src="{{ asset('images/banner.png') }}" alt="" />
 	</div>
 	<div class="text">
 		<div class="text-center" style="font-size:2em;font-weight:700">OOPS! Page not found.</div>
@@ -60,3 +55,5 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </div>
 </body>
 </html>
+
+
