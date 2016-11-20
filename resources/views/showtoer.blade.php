@@ -11,7 +11,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Options</a>
+      <a class="navbar-brand" style="text-decoration:none;pointer-events:none;color:#3A3A3A;" href="#">Options</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -19,7 +19,7 @@
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Employee
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
-           <li><a type="button" data-toggle="modal" data-target="#myModal">Add Employee</a></li>
+           <li><a style="cursor:pointer;" data-toggle="modal" data-target="#myModal">Add Employee</a></li>
            <li><a href="{{ route('showEmployee') }}">Show Employee</a></li>
         </ul>
       </li>
@@ -89,20 +89,20 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add New Employee</h4>
+          <h4 class="modal-title text-center">Add New Employee</h4>
         </div>
         <div class="modal-body">
-           <form  method="post" action="{{ route('addEmployee') }}">
-            <div class="form-group">
-            <label for="name" class="control-label">Your Name</label>
-            <input type="name" name="name" class="form-control">
+           <form method="post" action="{{ route('addEmployee') }}">
+            <div class="form-group text-center">
+            <label for="name" class="control-label">Username</label>
+            <input type="name" name="name" class="form-control text-center">
           </div>
-          <div class="form-group">
-            <label  for="pwd" class="control-label">Password</label>
-            <input type="password" name="password" class="form-control">
+          <div class="form-group text-center">
+            <label for="pwd" class="control-label">Password</label>
+            <input type="password" name="password" class="form-control text-center">
           </div>
-        <div class="form-group">
-            <button class="btn btn-primary btn-lg" type="submit">Add Employee</button>
+        <div class="form-group text-center">
+            <button class="btn btn-success btn-md" type="submit">Add Employee</button>
           
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="_token" value="{{ Session::token() }}"> 
@@ -117,7 +117,7 @@
       </div>
       </div>
     </div>
-  </div>    
+  </div>   
 <div class="container" style="background-color:white;">
   
   <div class="text-center" style="font-family: 'Lato', sans-serif;font-size:1.7em;font-weight:700;margin-top:10px;color:#6d6d6d;"> Employee Information </div>
