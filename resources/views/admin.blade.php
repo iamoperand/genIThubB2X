@@ -23,7 +23,7 @@
   <div class="row">
 
 
-    <select name="choice" class="form-control">
+    <select name="choice" class="form-control" data-parsley-validate>
       <option value="employer">Employer</option>
       <option value="employee">Employee</option>
     </select>

@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class CreateEmployeeTable extends Migration
 {
     /**
@@ -12,7 +11,10 @@ class CreateEmployeeTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('Employee',function (Blueprint $table) {
+            $table->string('username');
+            $table->string('password');
+        });
     }
 
     /**
@@ -22,6 +24,6 @@ class CreateEmployeeTable extends Migration
      */
     public function down()
     {
-        //
+       Schema::drop('Employee');
     }
 }

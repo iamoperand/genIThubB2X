@@ -4,24 +4,36 @@ namespace App\Http\Controllers;
 use View;
 use App\Models\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Session; 
 use DB;
 use Carbon\Carbon;
 use Excel;
 use PDO;
+use App\Models\Employee;
+use Validator;
 
-class MainController extends BaseController
+
+
+class MainController extends Controller
 {
     public function login(Request $request)
     {
+        $this->validate($request, array(
+          'name' => 'required|max:255',
+          'pass' => 'required|max:255'
+
+        )); 
+
+
            $name=$request->input('name');
            $pass=$request->input('pass');
-    
+      
+
        if($name=='avionicuser@gmail.com' && $pass=='123')
        {
 
@@ -38,7 +50,11 @@ class MainController extends BaseController
 
     public function enquiry(Request $request)
     {
+      $this->validate($request, array(
+          'purpose' => 'required',
+          
 
+        )); 
         $purpose=$request->input('purpose');
 
         
@@ -50,7 +66,24 @@ class MainController extends BaseController
     public function postInfo(Request $request)
     {
 
+   
+   $validator = Validator::make($request->all(), [
+             'name' => 'required|max:255',
+          'num' => 'required|max:11|min:8',
+        ]);
+
+        if ($validator->fails()) {
+          $purpose = Session::get('purpose_key');
+            return view('info')->with('purpose_of_visit', $purpose);
+        }else{
+
+
+
+        }
+
     $purpose=Session::get('purpose_key');
+   
+
     $purpose_name=$request->input('name');
     $purpose_mobile=$request->input('num');
     $time=Carbon::now(); 
@@ -65,6 +98,7 @@ class MainController extends BaseController
     $data = DB::table('User')
             ->where('name', '=', $purpose_name)
             ->where('phone_num', '=', $purpose_mobile)
+            ->where('start_timestamp', '=', $time_now)
             ->get();
 
     return view('infogen')->with('data', $data);
@@ -73,6 +107,13 @@ class MainController extends BaseController
             
     public function loginAdmin(Request $request)
     {
+        
+      $this->validate($request, array(
+          'name' => 'required|max:255',
+          'pass' => 'required|max:255'
+
+        )); 
+
        $name=$request->input('name');
        $pass=$request->input('pass');
     
@@ -99,7 +140,10 @@ class MainController extends BaseController
 
         public function processInfo(Request $request)
         {
-
+          $this->validate($request, array(
+          'choice' => 'required',
+          
+        )); 
           $choice = $request->input('choice');
           
           if($choice=='employer'){
@@ -121,7 +165,11 @@ class MainController extends BaseController
 
         public function erLogin(Request $request)
         {
+        $this->validate($request, array(
+          'er_name' => 'required|max:255',
+          'er_pass' => 'required|max:255'
 
+        )); 
         $name=$request->input('er_name');
         $pass=$request->input('er_pass');
     
@@ -187,10 +235,11 @@ class MainController extends BaseController
         }
         public function startQuery(Request $request)
         {
+          $e_name=$request->input('e_name');
          $token=$request->input('token');
          $time=Carbon::now(); 
          $time_now=$time->toDateTimeString();
-         DB::table('User')->where('token_num',$token)->update(['a_flag'=>'1','start_timestamp'=>$time_now]);
+         DB::table('User')->where('token_num',$token)->update(['e_name'=>$e_name,'a_flag'=>'1','start_timestamp'=>$time_now]);
          return redirect()->back();
         }
         public function finishQuery(Request $request)
@@ -198,7 +247,7 @@ class MainController extends BaseController
          $token=$request->input('token');
           $time=Carbon::now(); 
          $time_now=$time->toDateTimeString();
-         DB::table('user')->where('token_num',$token)->update(['e_flag'=>'1','end_timestamp'=>$time_now]);
+         DB::table('User')->where('token_num',$token)->update(['e_flag'=>'1','end_timestamp'=>$time_now]);
          return redirect()->back();
         }
         public function infoExcel() {
@@ -272,16 +321,21 @@ public function eeLogin(Request $request)
 {
 
         $name=$request->input('ee_name');
-        Session::set('ee_name',$name);
-        $pass=$request->input('ee_pass');
-    
-       if($name=='admin' && $pass=='123')
+        
+        $password=$request->input('ee_pass');
+        
+
+         
+        $employee=Employee::where('username',$name)->where('password',$password)->get();
+        
+       if(count($employee))
        {
 
         Session::flash('success_employee', 'You are successfully logged in');
         $employee_logged = true;
         Session::set('employee_logged',$employee_logged);
-
+        Session::set('ee_name',$name);
+        
         $users = DB::table('User')->paginate(7);
         return redirect('employee')->with('users',$users);
         
@@ -301,5 +355,43 @@ public function eeLogin(Request $request)
   Session::forget('ee_name');
   return redirect('eelogin');
  }
+  // add new employee
+ public function addEmployee(Request $request)
+ {
+   $this->validate($request,[
+   'name' => 'required',
+   'password' => 'required',
+   ]);
+   $password=$request->input('password');
+   
+   $name=$request->input('name');
+   $time=Carbon::now(); 
+   $time_now=$time->toDateTimeString();
+  Employee::create(['username'=>$name,'password'=>$password]);
+  return redirect('show-employee')->with('info','Account created successfully!!');
+ 
+ }
+ //show employee to employer
+ public function showEmployeeToEr()
+ {
+  $employees=Employee::get();
+  return view('showtoer')->with('employees',$employees);
+ }
+ public function deleteEe(Request $request)
+ {
+  $name=$request->input('ename');
+  Employee::where('username',$name)->delete();
 
+  return redirect()->back()->with('info','Account deleted successfully!!');
+
+ }
+ public function chPassword(Request $request)
+ {
+  $name=$request->input('ename');
+  $password=$request->input('password');//verify new and confirm new password
+  
+  Employee::where('username',$name)->update(['password'=>$password]);
+
+  return redirect()->back()->with('info','Password changed successfully!!');
+ }
 }
