@@ -14,6 +14,9 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         // Commands\Inspire::class,
+        'App\Console\Commands\Inspire',
+        'App\Console\Commands\LogDemo',
+
     ];
 
     /**
@@ -24,7 +27,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+       
+        $schedule->call(function () {
+            DB::table('User')->truncate();
+        })->daily();
     }
+    
 }
