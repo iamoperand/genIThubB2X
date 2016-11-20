@@ -473,14 +473,13 @@ public function eeLogin(Request $request)
         $name=$request->input('ee_name');
         
         $password=$request->input('ee_pass');
-        
-
          
         $employee=Employee::where('username',$name)->where('password',$password)->get();
         
        if(count($employee))
        {
-
+        
+      
         Session::flash('success_employee', 'You are successfully logged in');
         $employee_logged = true;
         Session::set('employee_logged',$employee_logged);
@@ -493,11 +492,14 @@ public function eeLogin(Request $request)
        }
        else
        {  
-
+         
+         
          Session::flash('failure_employee', 'Invalid username/password combination. Please try again!');
          
          return view('eelogin');
+         
        }
+       
 }
 //logout employee and redirect to employee login
  public function logoutEe()
