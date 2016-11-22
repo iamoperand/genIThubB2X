@@ -18,7 +18,7 @@ class LogDemo extends Command
      *
      * @var string
      */
-    protected $description = 'THis will one line to the log file.';
+    protected $description = 'This will add one line to the log file.';
 
     /**
      * Create a new command instance.
@@ -37,6 +37,6 @@ class LogDemo extends Command
      */
     public function handle()
     {
-        //
+        \Log::info('I was here @' . \Carbon\Carbon::now());
     }
 }

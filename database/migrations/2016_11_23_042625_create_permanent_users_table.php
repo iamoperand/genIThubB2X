@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class EmployerData extends Migration
+class CreatePermanentUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,9 @@ class EmployerData extends Migration
      */
     public function up()
     {
-         Schema::create('User',function (Blueprint $table) {
-         $table->bigIncrements('token_num');
+        Schema::create('P_Users', function (Blueprint $table) {
+           $table->bigIncrements('s_no');
+           $table->integer('token_num');
             $table->string('purpose');
             $table->string('name');
             $table->char('phone_num',11);
@@ -25,7 +26,6 @@ class EmployerData extends Migration
             $table->boolean('e_flag')->default(false);
 
         });
-        
     }
 
     /**
@@ -35,6 +35,6 @@ class EmployerData extends Migration
      */
     public function down()
     {
-          Schema::drop('User');
+        Schema::drop('P_Users');
     }
 }
