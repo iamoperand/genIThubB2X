@@ -27,8 +27,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet"> 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css">
-
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+	 <link rel="icon" href="{{ asset('images/favicon.ico') }}"> 
 	<style>
 		.p_credits{
 			font-size: 1.1em;
@@ -47,5 +48,26 @@
 			color:#fff;
 			text-decoration:none;
 		}
+		.navbar{
+	 		background-color: #fff;
+	 	}
+	 	.btn.btn-primary{
+
+  border-radius:  0px;
+  background-color: #337ab7;
+  color: #fff;
+  padding: 5px 30px 5px 30px;
+}
+
+.btn-primary:hover{
+
+  
+  background-color: #286090;
+  border-radius : 0px;
+}
+
+
+
+
 	</style>
 	</head>
