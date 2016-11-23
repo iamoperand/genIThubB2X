@@ -346,7 +346,7 @@ return view('login');
         $employer_logged = true;
         Session::set('employer_logged',$employer_logged);
 
-        $users = DB::table('User')->paginate(7);
+        $users = DB::table('P_Users')->paginate(7);
         return redirect('employer')->with('users',$users);
         
         
@@ -369,7 +369,7 @@ return view('login');
         if(Session::has('admin_logged')){
 
         if(Session::has('employer_logged')){
-          $users = DB::table('User')->paginate(7);
+          $users = DB::table('P_Users')->paginate(7);
          
           return view('employer')->with('users',$users);  
                 }else{

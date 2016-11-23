@@ -16,11 +16,11 @@
 <div style="font-size:1em;color:#000;font-family: 'Lato', sans-serif;">Choose the <b>start</b> and <b>end</b> date</div>
 <div>&nbsp;</div>
             
-             <form method="post" action="{{route('admin.info.excel')}}">
-     <div class="input-group input-daterange">
-    <input type="text" class="form-control datepicker_start" name="start" placeholder="Start Date">
-    <span class="input-group-addon">TO</span>
-    <input type="text" class="form-control datepicker_finish" name="finish" placeholder="End Date">
+             <form method="post" action="{{route('admin.info.excel')}}" data-parsley-validate>
+     <div class="input-daterange">
+    <input type="text" class="form-control datepicker_start" name="start" placeholder="Start Date" required="">
+    <div style="font-size:1.2em;font-weight:700;padding:5px 0px 5px 0px;">TO</div>
+    <input type="text" class="form-control datepicker_finish" name="finish" placeholder="End Date" required="">
 
 </div>
 
@@ -44,7 +44,7 @@
     
     format: 'yyyy-mm-dd',
     autoclose: true,
-    
+    	
     daysOfWeekDisabled: '0',
     title: "Choose Initial Date",
     todayHighlight: true,

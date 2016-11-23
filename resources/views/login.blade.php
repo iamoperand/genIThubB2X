@@ -52,7 +52,7 @@
       <div class="col-md-6">
       <div class="card card-container">
                     <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-            <p id="profile-name" class="profile-name-card" style="font-size:1.5em;color:#ff8300;font-family: 'Lato', sans-serif;">Admin Login</p>
+            <p id="profile-name" class="profile-name-card" style="font-size:1.5em;color:#ff8300;font-family: 'Lato', sans-serif;">Office Login</p>
             <div>&nbsp;</div>
  <form method="post" action="{{ route('adminLogin') }}" data-parsley-validate>
     <div class="form-group text-center">

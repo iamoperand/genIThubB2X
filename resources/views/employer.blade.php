@@ -65,7 +65,7 @@
             <input type="password" name="password" class="form-control text-center" required="" data-parsley-maxlength="255">
           </div>
         <div class="form-group text-center">
-            <button class="btn btn-success btn-md" type="submit">Add Employee</button>
+            <button class="btn btn-primary btn-md" type="submit">Add Employee</button>
           
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="_token" value="{{ Session::token() }}"> 
@@ -126,6 +126,7 @@
   <table class="table table-bordered table-hover">
     <thead>
       <tr>
+        <th>Serial Number</th>
         <th>Token Number</th>
         <th>Purpose</th>
         <th>Name</th>
@@ -139,6 +140,7 @@
 @foreach ($users as $user)
     
       <tr>
+      <td>{{ $user->s_no}}</td>
         <td><span style="font-size:1.2em;font-weight:700;">{{ $user->token_num }}</span></td>
         <td>{{ $user->purpose }}</td>
         <td>{{ $user->name }}</td>

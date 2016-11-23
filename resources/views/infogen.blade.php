@@ -10,8 +10,10 @@
           
         <h4 class="modal-title">Welcome to B2X Rohini</h4>
         </div>
-        <div class="modal-body text-center" >
+        <div class="modal-body">
+        <div class="text-center">
           <p id="myText" style="font-weight:700;font-size:2.2em;color:#ff6600;font-family: 'Lato', sans-serif;">Your token number is {{ $info->token_num }}</p>
+         </div>
           <br />
           <br />
           <div class="text-center">
@@ -20,26 +22,26 @@
         <span>Voice</span>
         <select id="voiceOptions" class="form-control"></select>
         <br />
-        <div class="btn btn-danger" onclick="speak();">Speak</div>
+        <div class="btn btn-primary" onclick="speak();">Speak</div>
         </label>
         </div>  
         <br />
           
-          <div class="text-center">
-          <span style="font-size:1.1em;font-weight:700;color:#848484;font-family: 'Lato', sans-serif;"> Name</span> <span style="font-size:1.5em;font-weight:900;color:#848484;">:</span> <span style="font-size:1.2em;font-weight:600;color:#282828;">{{ $info->name }}</span>
+          <div class="col-md-offset-4">
+          <span style="font-size:1.1em;font-weight:700;color:#848484;font-family: 'Lato', sans-serif;"> Name</span>: <span style="font-size:1.4em;font-weight:600;color:#282828;">{{ $info->name }}</span>
           <br />
-          <span style="font-size:1.1em;font-weight:700;color:#848484;font-family: 'Lato', sans-serif;"> Purpose</span> <span style="font-size:1.5em;font-weight:900;color:#848484;">:</span> <span style="font-size:1.2em;font-weight:600;color:#282828;">{{ $info->purpose }}</span>
+          <span style="font-size:1.1em;font-weight:700;color:#848484;font-family: 'Lato', sans-serif;"> Purpose</span>: <span style="font-size:1.4em;font-weight:600;color:#282828;">{{ $info->purpose }}</span>
           <br />
-          <span style="font-size:1.1em;font-weight:700;color:#848484;font-family: 'Lato', sans-serif;"> Mobile Number</span> <span style="font-size:1.5em;font-weight:900;color:#848484;">:</span> <span style="font-size:1.2em;font-weight:600;color:#282828;">{{ $info->phone_num }}</span>
+          <span style="font-size:1.1em;font-weight:700;color:#848484;font-family: 'Lato', sans-serif;"> Mobile Number</span>: <span style="font-size:1.4em;font-weight:600;color:#282828;">{{ $info->phone_num }}</span>
           <br />
-          <span style="font-size:1.1em;font-weight:700;color:#848484;"> Check-in time</span> <span style="font-size:1.5em;font-weight:900;color:#848484;">:</span> <span style="font-size:1.2em;font-weight:600;color:#282828;">{{ $info->start_timestamp }}</span>
+          <span style="font-size:1.1em;font-weight:700;color:#848484;"> Check-in time</span>: <span style="font-size:1.4em;font-weight:600;color:#282828;">&nbsp;{{ $info->start_timestamp }}</span>
           
           </div>
         </div>
         <div class="modal-footer">
           
 
-          <a href="{{url('enquiry')}}" class="close"> 
+          <a href="{{url('enquiry')}}" class="close" style="opacity:0.6;"> 
               <span style="font-size:1.2em;font-weight:700;color:#000000">OK</span>
           </a> 
         </div>

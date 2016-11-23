@@ -3,7 +3,7 @@
 			<div class="container-fluid">
 				<div class="navbar-header"> 
 				<!-- Mobile Toggle Menu Button -->
-				<a class="navbar-brand" href="{{url('/')}}"><span style="color:#0E385F;font-size:1.2em;font-family: 'Ubuntu', sans-serif;">Avionic Solutions</span></a>
+				<a class="navbar-brand" href="{{url('/')}}"><span style="color:#0E385F;font-size:1.2em;font-family: 'Ubuntu', sans-serif;"><b>Avionic</b> Solutions</span></a>
 				 
 				</div>
 <ul class="nav navbar-nav navbar-right">

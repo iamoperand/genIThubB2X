@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
     {
 
        
-        $schedule->command('user:info')->everyMinute();
+        $schedule->command('user:info')->daily();
 
     }
     
