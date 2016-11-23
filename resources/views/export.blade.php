@@ -11,19 +11,24 @@
 
 <p id="profile-name" class="profile-name-card" style="font-size:2em;color:#000;font-family: 'Lato', sans-serif;">Export Your Data</p>
             <div>&nbsp;</div>
-            
+             <form method="post" action="{{route('admin.info.excel')}}">
      <div class="input-group input-daterange" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-    <input type="text" class="form-control" value="2016-11-22">
+    <input type="text" class="form-control" name="start" placeholder="Start">
     <span class="input-group-addon">to</span>
-    <input type="text" class="form-control" value="2016-11-23">
-    <div class="input-group-addon">
-        <span class="glyphicon glyphicon-th"></span>
-    </div>
+    <input type="text" class="form-control" name="finish" placeholder="Finish">
+
 </div>
+
+ 
        <br />
-<div class="text-center">
-<a href="{{ route('admin.info.excel') }}" class="btn btn-success">Export to Excel</a>
-</div>
+   <div class="form-group">
+<input type="submit" class="btn btn-success" value="Export to Excel">
+  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+ <input type="hidden" name="_token" value="{{ Session::token() }}">
+  </div>
+  </form>
+
+
 </div>
 </div>
 

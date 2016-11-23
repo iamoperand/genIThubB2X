@@ -400,7 +400,15 @@ return view('eelogin');
          DB::table('User')->where('token_num',$token)->update(['e_flag'=>'1','end_timestamp'=>$time_now]);
          return redirect()->back();
         }
-        public function infoExcel() {
+        public function getDate(Request $request)
+        {
+          $start=$request->input('start');
+          $finish=$request->input('finish');
+          dd($start);
+
+          //return redirect()->back()->with('start',$start);
+        }
+        public function infoExcel(Request $request) {
 
 if(Session::has('employer_logged')){
     // Execute the query used to retrieve the data. In this example
@@ -408,8 +416,33 @@ if(Session::has('employer_logged')){
     // the payments table's primary key, the user's first and last name, 
     // the user's e-mail address, the amount paid, and the payment
     // timestamp.
-    
+
+            $start= $request->input('start');
+            $finish=$request->input('finish');
+            $users=DB::table('user')->where('start_timestamp', '>' , $start.'%')->get();
+            $users1=DB::table('user')->where('start_timestamp', '<>', $finish.'%')->get();
+            
+            
+             $count=0;
+             $totuser=[];
+            foreach($users as $user)
+            {
+             foreach($users1 as $user1)
+             {
+               if($user==$user1)
+                 {
+                  $totuser[$count]=$user;
+                  $count++;
+                 }
+                 
+                
+             } 
+            }
+          
+            
+          
     $info = DB::table('User')->get();
+
 
     
 
@@ -424,11 +457,13 @@ if(Session::has('employer_logged')){
     // Convert each member of the returned collection into an array,
     // and append it to the payments array.
 
-    foreach($info as $data){
-    $infoArray[] = (array) $data;
-     }
-
     
+
+     for($i=0;$i<$count;$i++)
+     {
+      $infoArray[$i]=(array) $totuser[$i];
+      
+     }
 
     // Generate and return the spreadsheet
     Excel::create('info', function($excel) use ($infoArray) {
@@ -451,13 +486,15 @@ else if(Session::has('admin_logged'))
 Session::flash('employer_notlogged', 'You are not logged in as an Employer. Please login to continue!');
 
 return view('erlogin');
-/* Having problems with redirecting. Views not recovered when return view('erlogin') is used.*/
+//Having problems with redirecting. Views not recovered when return view('erlogin') is used.
 }
 else{
   Session::flash('admin_notlogged', 'You are not logged in as an office personnel. Please login to continue!');
   
   return view('login');
-/* Having problems with redirecting. Views not recovered when return view('login') is used.*/
+
+ //Having problems with redirecting. Views not recovered when return view('login') is used.
+ 
 }
 }
 
