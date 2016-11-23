@@ -141,7 +141,7 @@ if(Session::has('user_logged')){
 
 
 
-        }
+        
 
     $purpose=Session::get('purpose_key');
    
@@ -163,7 +163,7 @@ if(Session::has('user_logged')){
             ->where('start_timestamp', '=', $time_now)
             ->get();
 
-    return view('infogen')->with('data', $data);
+    return view('infogen')->with('data', $data);}
   }else{
 
     Session::flash('failure', 'You are not logged in as a user. Please login to continue!');
@@ -419,7 +419,7 @@ if(Session::has('employer_logged')){
     $infoArray = []; 
 
     // Define the Excel spreadsheet headers
-    $infoArray[] = ['token_num', 'purpose','name','phone_num','start_timestamp','end_timestamp','a_flag','e_flag'];
+    $infoArray[] = ['token_num', 'purpose','name','phone_num','start_timestamp','end_timestamp','e_name','a_flag','e_flag'];
 
     // Convert each member of the returned collection into an array,
     // and append it to the payments array.
