@@ -54,9 +54,9 @@ class UserInfo extends Command
             $e_flag = $t_info->e_flag;
          
 
-         DB::table('P_Users')->insert(
-    ['token_num' => $token_num, 'purpose' => $purpose, 'name' => $name, 'phone_num' => $phone_num, 'start_timestamp' => $start_timestamp, 'end_timestamp' => $end_timestamp, 'e_name' => $e_name, 'a_flag' => $a_flag, 'e_flag'=>$e_flag]);
-     }
+             DB::table('P_Users')->insert(
+             ['token_num' => $token_num, 'purpose' => $purpose, 'name' => $name, 'phone_num' => $phone_num, 'start_timestamp' => $start_timestamp, 'end_timestamp' => $end_timestamp, 'e_name' => $e_name, 'a_flag' => $a_flag, 'e_flag'=>$e_flag]);
+         }
     DB::table('User')->truncate();
 
     }
