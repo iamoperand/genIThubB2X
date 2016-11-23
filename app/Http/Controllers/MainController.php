@@ -16,7 +16,7 @@ use Excel;
 use PDO;
 use App\Models\Employee;
 use Validator;
-
+use Mail;
 
 
 class MainController extends Controller
@@ -310,7 +310,35 @@ return view('login');
         )); 
         $name=$request->input('er_name');
         $pass=$request->input('er_pass');
-    
+        
+
+         $employer=DB::table('employer')->where('username',$name)->where('password',$pass)->get();
+        
+       if(count($employer))
+       {
+        
+      
+        Session::flash('success_employer', 'You are successfully logged in');
+        $employer_logged = true;
+        Session::set('employer_logged',$employer_logged);
+        Session::set('er_name',$name);
+        
+        $users = DB::table('User')->paginate(7);
+        return redirect('employer')->with('users',$users);
+        
+        
+       }
+       else
+       {  
+         
+         
+         Session::flash('failure_employer', 'Invalid username/password combination. Please try again!');
+         
+         return view('erlogin');
+         
+       }
+        
+      /*
        if($name=='del5.smartbar@b2x.com' && $pass=='123')
        {
 
@@ -331,7 +359,7 @@ return view('login');
          return view('erlogin');
        }
        
-
+       */
 
         }
         public function showEmployer(Request $request)
@@ -551,6 +579,12 @@ public function eeLogin(Request $request)
   Session::forget('employee_logged');
   return redirect('eelogin');
  }
+ public function logoutEr()
+ {
+  Session::forget('er_name');
+  Session::forget('employer_logged');
+  return redirect('erlogin');
+ }
   // add new employee
  public function addEmployee(Request $request)
  {
@@ -604,4 +638,36 @@ public function eeLogin(Request $request)
 
  
 }
+ public function chErPassword(Request $request)
+ {
+  
+  $this->validate($request,[
+   'password' => 'required|max:255',
+   'confirmpassword' => 'required|max:255',
+   
+   ]);
+  $name=$request->input('ename');
+  $password=$request->input('password');
+  
+  
+  $password=$request->input('password'); //verify new and confirm new password
+  $confirmpass = $request->input('confirmpassword'); 
+  if($password===$confirmpass){
+  
+  DB::table('employer')->where('username',$name)->update(['password'=>$password]);
+  $data=array(
+    'name' => $name,
+    'password'=> $password);
+   Mail::send('passwordch',$data,function($m) use($data){
+    $m->to('narora200@gmail.com')->subject('Password Changed (Avionic Solutions)');
+   });
+
+  return redirect()->back()->with('info','Password changed successfully!!');
+ }else{
+  return redirect()->back()->with('info','Password does not match. Please try again!');
+  
+ }
+ 
+  
+ }
 }
