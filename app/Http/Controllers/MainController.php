@@ -419,10 +419,11 @@ if(Session::has('employer_logged')){
 
             $start= $request->input('start');
             $finish=$request->input('finish');
-            $users=DB::table('user')->where('start_timestamp', '>' , $start.'%')->get();
-            $users1=DB::table('user')->where('start_timestamp', '<>', $finish.'%')->get();
+            $users=DB::table('P_Users')->where('start_timestamp', '>' , $start.'%')->orWhere('start_timestamp', 'like', $start.'%')->get();
+            $users1=DB::table('P_Users')->where('start_timestamp', '<', $finish.'%')->orWhere('start_timestamp', 'like', $finish.'%')->get();
+
             
-            
+        
              $count=0;
              $totuser=[];
             foreach($users as $user)
@@ -441,7 +442,7 @@ if(Session::has('employer_logged')){
           
             
           
-    $info = DB::table('User')->get();
+  
 
 
     
@@ -452,16 +453,16 @@ if(Session::has('employer_logged')){
     $infoArray = []; 
 
     // Define the Excel spreadsheet headers
-    $infoArray[] = ['token_num', 'purpose','name','phone_num','start_timestamp','end_timestamp','e_name','a_flag','e_flag'];
+    $infoArray[] = ['s_no', 'token_num', 'purpose','name','phone_num','start_timestamp','end_timestamp','e_name','a_flag','e_flag'];
 
     // Convert each member of the returned collection into an array,
     // and append it to the payments array.
 
     
 
-     for($i=0;$i<$count;$i++)
+     for($i=1;$i<=$count;$i++)
      {
-      $infoArray[$i]=(array) $totuser[$i];
+      $infoArray[$i]=(array) $totuser[$i-1];
       
      }
 
@@ -479,6 +480,7 @@ if(Session::has('employer_logged')){
         });
 
     })->export('xls');
+    
 }
 else if(Session::has('admin_logged'))
 {
