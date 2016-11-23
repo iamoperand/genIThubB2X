@@ -13,9 +13,9 @@
             <div>&nbsp;</div>
              <form method="post" action="{{route('admin.info.excel')}}">
      <div class="input-group input-daterange" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-    <input type="text" class="form-control" name="start" placeholder="Start">
+    <input type="text" class="form-control" name="start" placeholder="Start Date">
     <span class="input-group-addon">to</span>
-    <input type="text" class="form-control" name="finish" placeholder="Finish">
+    <input type="text" class="form-control" name="finish" placeholder="End Date">
 
 </div>
 
@@ -33,9 +33,7 @@
 </div>
 
 <script>
-	$(function(){
-
-	});
+	
 </script>
 
 
