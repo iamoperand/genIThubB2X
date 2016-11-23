@@ -71,7 +71,7 @@
             <input type="password" placehoder="Confirm password" name="confirmpass" class="form-control text-center" required="" data-parsley-maxlength="255" data-parsley-equalto="#password">
           </div>
         <div class="form-group text-center">
-            <button class="btn btn-success btn-md" type="submit">Change</button>
+            <button class="btn btn-primary btn-md" type="submit">Change</button>
           
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="_token" value="{{ Session::token() }}"> 
@@ -109,7 +109,7 @@
             <input type="password" name="password" class="form-control text-center">
           </div>
         <div class="form-group text-center">
-            <button class="btn btn-success btn-md" type="submit">Add Employee</button>
+            <button class="btn btn-primary btn-md" type="submit">Add Employee</button>
           
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="_token" value="{{ Session::token() }}"> 

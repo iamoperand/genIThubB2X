@@ -1,5 +1,5 @@
-<div><br /></div>
-<div><br /></div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
 
 <footer>
 <div class="container-fluid">

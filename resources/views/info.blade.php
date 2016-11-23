@@ -23,8 +23,9 @@
       <label for="tel">Mobile</label>
       <input type="text" name="num" class="form-control" id="mobile_info" placeholder="Enter Mobile" required="" data-parsley-type="number" data-parsley-minlength="8" data-parsley-maxlength="11">
     </div>
+    <div><br /></div>
     <div class="text-center">
-    <button type="submit" href="{{url('infogen')}}" rel="facebox" id="clicked" class="btn btn-info btn-md">Submit</button>
+    <button type="submit" href="{{url('infogen')}}" rel="facebox" id="clicked" class="btn btn-primary btn-md">Submit</button>
 
     <a type="button" class="btn btn-default" href="{{url('enquiry')}}">Go back</a>
     </div>
