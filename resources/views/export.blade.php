@@ -13,7 +13,7 @@
 <div>&nbsp;</div>
             <div>&nbsp;</div>
 
-<div style="font-size:1em;color:#000;font-family: 'Lato', sans-serif;">Choose the <b>start</b> and <b>end</b> date</div>
+<div style="font-size:1em;color:#000;font-family: 'Lato', sans-serif;">Choose the <b>START</b> and <b>END</b> dates</div>
 <div>&nbsp;</div>
             
              <form method="post" action="{{route('admin.info.excel')}}" data-parsley-validate>
