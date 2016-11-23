@@ -87,6 +87,7 @@
   <table class="table table-bordered table-hover">
     <thead>
       <tr>
+        <th>Serial Number</th>
         <th>Token Number</th>
         <th>Purpose</th>
         <th>Name</th>
@@ -100,6 +101,7 @@
 @foreach ($users as $user)
     
       <tr>
+      <td>{{ $user->s_no}}</td>
         <td><span style="font-size:1.2em;font-weight:700;">{{ $user->token_num }}</span></td>
         <td>{{ $user->purpose }}</td>
         <td>{{ $user->name }}</td>
