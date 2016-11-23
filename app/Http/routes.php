@@ -96,6 +96,11 @@ Route::get('logoutEe',[
   'uses'=>'MainController@logoutEe',
   'as'=> 'eeLogout'
   ]);
+ //employer logout
+Route::get('logoutEr',[
+   'uses'=>'MainController@logoutEr',
+   'as' => 'erLogout'
+  ]);
   //add new employee
  Route::post('add-employee',[
   'uses'=>'MainController@addEmployee',
@@ -115,4 +120,9 @@ Route::get('logoutEe',[
  Route::post('change-pass',[
   'uses'=>'MainController@chPassword',
   'as'=>'chPassword'
+  ]);
+ //change employer password
+ Route::post('change-employer-pass',[
+  'uses' => 'MainController@chErPassword',
+  'as' => 'changeErPassword'
   ]);

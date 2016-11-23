@@ -31,6 +31,7 @@
           <li><a href="{{url('export')}}">Export to Excel</a></li>
         </ul>
       </li>
+       <li><a style="cursor:pointer;" data-toggle="modal" data-target="#myModal2">Change Password</a></li>
       </ul>
       
     </div>
@@ -42,7 +43,46 @@
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <strong>Success:</strong> {{Session::get('info')}}
         </div>
- @endif  
+ @endif
+   <!-- Modal -->
+  <div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title text-center">Change Password</h4>
+        </div>
+        <div class="modal-body">
+           <form method="post" action="{{ route('changeErPassword') }}" data-parsley-validate>
+            <div class="form-group text-center">
+            <label for="name" class="control-label">New Password</label>
+            <input type="password" name="password" class="form-control text-center" required="" data-parsley-maxlength="255">
+          </div>
+          <div class="form-group text-center">
+            <label for="pwd" class="control-label">Confirm Password</label>
+            <input type="password" name="confirmpassword" class="form-control text-center" required="" data-parsley-maxlength="255">
+          </div>
+        <div class="form-group text-center">
+            <button class="btn btn-success btn-md" type="submit">Change</button>
+          
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="_token" value="{{ Session::token() }}"> 
+            <input type="hidden" name="ename" value="{{ Session::get('er_name')}}">
+        </div>
+        
+        <div class="modal-footer">
+           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div> 
+           
+        
+      </form>
+      </div>
+      </div>
+    </div>
+  </div>
+
 
  @if (Session::has('error'))
         <div class="alert alert-danger fade in">
