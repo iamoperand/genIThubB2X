@@ -10,7 +10,7 @@ body, html {
  /*   background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
 
 
-background: rgba(26,142,244,1);
+/*background: rgba(26,142,244,1);
 background: -moz-linear-gradient(top, rgba(26,142,244,1) 0%, rgba(26,142,244,1) 21%, rgba(176,207,243,1) 50%, rgba(13,110,180,1) 100%) fixed;
 background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(26,142,244,1)), color-stop(21%, rgba(26,142,244,1)), color-stop(50%, rgba(176,207,243,1)), color-stop(100%, rgba(13,110,180,1))) fixed;
 background: -webkit-linear-gradient(top, rgba(26,142,244,1) 0%, rgba(26,142,244,1) 21%, rgba(176,207,243,1) 50%, rgba(13,110,180,1) 100%) fixed;
@@ -18,12 +18,22 @@ background: -o-linear-gradient(top, rgba(26,142,244,1) 0%, rgba(26,142,244,1) 21
 background: -ms-linear-gradient(top, rgba(26,142,244,1) 0%, rgba(26,142,244,1) 21%, rgba(176,207,243,1) 50%, rgba(13,110,180,1) 100%) fixed;
 background: linear-gradient(to bottom, rgba(26,142,244,1) 0%, rgba(26,142,244,1) 21%, rgba(176,207,243,1) 50%, rgba(13,110,180,1) 100%) fixed;
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1a8ef4', endColorstr='#0d6eb4', GradientType=0 );
+*/
+
+background-color: #3B5998;
+background: -moz-linear-gradient(left, rgba(240,47,23,1) 0%, rgba(241,111,92,1) 0%, rgba(246,41,12,1) 0%, rgba(59,89,152,1) 0%, rgba(59,89,152,1) 100%) fixed;
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(240,47,23,1)), color-stop(0%, rgba(241,111,92,1)), color-stop(0%, rgba(246,41,12,1)), color-stop(0%, rgba(59,89,152,1)), color-stop(100%, rgba(59,89,152,1))) fixed;
+background: -webkit-linear-gradient(left, rgba(240,47,23,1) 0%, rgba(241,111,92,1) 0%, rgba(246,41,12,1) 0%, rgba(59,89,152,1) 0%, rgba(59,89,152,1) 100%) fixed;
+background: -o-linear-gradient(left, rgba(240,47,23,1) 0%, rgba(241,111,92,1) 0%, rgba(246,41,12,1) 0%, rgba(59,89,152,1) 0%, rgba(59,89,152,1) 100%) fixed;
+background: -ms-linear-gradient(left, rgba(240,47,23,1) 0%, rgba(241,111,92,1) 0%, rgba(246,41,12,1) 0%, rgba(59,89,152,1) 0%, rgba(59,89,152,1) 100%) fixed;
+background: linear-gradient(to right, rgba(240,47,23,1) 0%, rgba(241,111,92,1) 0%, rgba(246,41,12,1) 0%, rgba(59,89,152,1) 0%, rgba(59,89,152,1) 100%) fixed;
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f02f17', endColorstr='#3b5998', GradientType=1 );
 
 }
 
 .card-container.card {
-    max-width: 350px;
-    padding: 40px 40px;
+    max-width: 400px;
+    padding: 50px 50px;
 }
 
 .btn {
@@ -39,7 +49,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1a8ef4', end
  * Card component
  */
 .card {
-    background-color: #F7F7F7;
+    background-color: #FFF;
     /* just in case there no content*/
     padding: 20px 25px 30px;
     margin: 0 auto 25px;
