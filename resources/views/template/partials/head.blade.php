@@ -31,7 +31,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
 	<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
-
+<link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet">
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
 
@@ -73,7 +73,34 @@
   background-color: #286090;
   border-radius : 0px;
 }
+.btn.btn-danger{
 
+  border-radius:  0px;
+  background-color: #d9534f;
+  color: #fff;
+  padding: 5px 30px 5px 30px;
+}
+
+.btn-danger:hover{
+
+  
+  background-color: #C9302C;
+  border-radius : 0px;
+}
+.btn.btn-success{
+
+  border-radius:  0px;
+  background-color: #5cb85c;
+  color: #fff;
+  padding: 5px 30px 5px 30px;
+}
+
+.btn-success:hover{
+
+  
+  background-color: #4A904A;
+  border-radius : 0px;
+}
 
 
 

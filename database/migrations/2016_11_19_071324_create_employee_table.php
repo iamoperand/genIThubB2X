@@ -12,6 +12,7 @@ class CreateEmployeeTable extends Migration
     public function up()
     {
         Schema::create('Employee',function (Blueprint $table) {
+            $table->bigIncrements('s_no');
             $table->string('username');
             $table->string('password');
         });

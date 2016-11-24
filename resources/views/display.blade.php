@@ -4,7 +4,7 @@
 
 <div class="container-fluid">
 <div class="text-center">
-<p id="profile-name" class="profile-name-card" style="font-size:6em;color:#D5C36D;font-family: 'Lato', sans-serif;">Token Number</p>
+<p id="profile-name" class="profile-name-card" style="font-size:6em;color:#fff;font-family: 'Exo', sans-serif;">Token Number</p>
 </div>
 @foreach ($users as $user)
 <div class="col-md-3">

@@ -11,7 +11,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" style="text-decoration:none;pointer-events:none;color:#3A3A3A;" href="#">Options</a>
+      <a class="navbar-brand" style="text-decoration:none;color:#3A3A3A;" href="{{url('employer')}}">Options</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -58,14 +58,14 @@
            <form method="post" action="{{ route('changeErPassword') }}" data-parsley-validate>
             <div class="form-group text-center">
             <label for="name" class="control-label">New Password</label>
-            <input type="password" name="password" class="form-control text-center" required="" data-parsley-maxlength="255">
+            <input type="password" name="password" id="er_password" class="form-control text-center" required="" data-parsley-maxlength="255">
           </div>
           <div class="form-group text-center">
             <label for="pwd" class="control-label">Confirm Password</label>
-            <input type="password" name="confirmpassword" class="form-control text-center" required="" data-parsley-maxlength="255">
+            <input type="password" name="confirmpassword" class="form-control text-center" required="" data-parsley-maxlength="255" data-parsley-equalto="#er_password">
           </div>
         <div class="form-group text-center">
-            <button class="btn btn-success btn-md" type="submit">Change</button>
+            <button class="btn btn-primary btn-md" type="submit">Change</button>
           
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="_token" value="{{ Session::token() }}"> 
@@ -139,14 +139,14 @@
           <h4 class="modal-title text-center">Add New Employee</h4>
         </div>
         <div class="modal-body">
-           <form method="post" action="{{ route('addEmployee') }}">
+           <form method="post" action="{{ route('addEmployee') }}" data-parsley-validate>
             <div class="form-group text-center">
             <label for="name" class="control-label">Username</label>
-            <input type="name" name="name" class="form-control text-center">
+            <input type="name" name="name" class="form-control text-center" required="">
           </div>
           <div class="form-group text-center">
             <label for="pwd" class="control-label">Password</label>
-            <input type="password" name="password" class="form-control text-center">
+            <input type="password" name="password" class="form-control text-center" required="">
           </div>
         <div class="form-group text-center">
             <button class="btn btn-primary btn-md" type="submit">Add Employee</button>

@@ -318,12 +318,13 @@ return view('login');
        {
         
       
-        Session::flash('success_employer', 'You are successfully logged in');
+        Session::flash('success_employer', 'You are successfully logged in!');
         $employer_logged = true;
         Session::set('employer_logged',$employer_logged);
         Session::set('er_name',$name);
         
         $users = DB::table('User')->paginate(7);
+        
         return redirect('employer')->with('users',$users);
         
         
@@ -551,7 +552,7 @@ public function eeLogin(Request $request)
        {
         
       
-        Session::flash('success_employee', 'You are successfully logged in');
+        Session::flash('success_employee', 'You are successfully logged in!');
         $employee_logged = true;
         Session::set('employee_logged',$employee_logged);
         Session::set('ee_name',$name);
@@ -623,6 +624,7 @@ public function eeLogin(Request $request)
    'confirmpass' => 'required|max:255',
    
    ]);
+
     $name=$request->input('ename');
   $password=$request->input('password'); //verify new and confirm new password
   $confirmpass = $request->input('confirmpass'); 
@@ -647,8 +649,8 @@ public function eeLogin(Request $request)
    
    ]);
   $name=$request->input('ename');
-  $password=$request->input('password');
   
+
   
   $password=$request->input('password'); //verify new and confirm new password
   $confirmpass = $request->input('confirmpassword'); 
@@ -664,7 +666,7 @@ public function eeLogin(Request $request)
 
   return redirect()->back()->with('info','Password changed successfully!!');
  }else{
-  return redirect()->back()->with('info','Password does not match. Please try again!');
+  return redirect()->back()->with('error','Password does not match. Please try again!');
   
  }
  

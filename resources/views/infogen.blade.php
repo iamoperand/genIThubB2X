@@ -80,10 +80,10 @@
 
       function speak () {
         var msg = new SpeechSynthesisUtterance();
-        msg.volume = 0.5;
+        msg.volume = 1;
         msg.voice = voiceMap[voiceOptions.value];
-        msg.rate = 0.5;
-        msg.Pitch = 0.5;
+        msg.rate = 0.7;
+        msg.Pitch = 0.9;
         msg.text = myText.innerHTML;
         window.speechSynthesis.speak(msg);
       };
