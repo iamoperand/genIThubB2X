@@ -85,7 +85,7 @@ Route::post('excelsheet-date',[
   ]);
 
 Route::get('display','MainController@getDisplay');
-});
+
  //Employee login 
 Route::post('employee',[
   'uses'=>'MainController@eeLogin',
@@ -126,3 +126,20 @@ Route::get('logoutEr',[
   'uses' => 'MainController@chErPassword',
   'as' => 'changeErPassword'
   ]);
+
+
+Route::get('chpasser',function() {
+  return view('chpasser');
+});
+//send otp for change employer pass
+Route::post('send-otp',[
+ 'uses'=>'MainController@sendOtp',
+  'as'=>'sendOtp'
+  ]);
+Route::post('validate-otp',[
+  'uses'=>'MainController@validateOtp',
+  'as' => 'verifyOtp'
+  ]);
+Route::get('sendotpagain','MainController@sendOtpAgain');
+
+});

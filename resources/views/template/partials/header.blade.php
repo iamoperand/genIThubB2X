@@ -18,7 +18,7 @@
                 
               </ul>
             </li> @endif
-           @if (Session::has('er_name') && (Request::is('employer')||(Request::is('show-employee')&& Session::has('employer_logged'))||Request::is('export')))  <li class="dropdown">
+           @if (Session::has('er_name') && (Request::is('employer')||(Request::is('show-employee')&& Session::has('employer_logged'))||(Request::is('validate-otp')&& Session::has('employer_logged'))||Request::is('export')))  <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>&nbsp;{{Session::get('er_name')}}</a>
               <ul class="dropdown-menu">
                 <li><a href="{{ route('erLogout')}}">Logout</a></li>
