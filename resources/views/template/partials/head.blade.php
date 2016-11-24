@@ -37,7 +37,7 @@
 
 <!-- (Optional) Latest compiled and minified JavaScript translation files -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/i18n/defaults-*.min.js"></script>
-	 <link rel="icon" href="{{ asset('images/favicon.ico') }}"> 
+	 <link rel="icon" href="{{ asset('images/favicon.png') }}"> 
 	<style>
 		.p_credits{
 			font-size: 1.1em;
