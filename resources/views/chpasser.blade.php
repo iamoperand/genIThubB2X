@@ -1,7 +1,6 @@
 @extends('template.default')
 
 @section('content')
-
 <div class="container">
     <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -31,8 +30,8 @@
           <li><a href="{{url('export')}}">Export to Excel</a></li>
         </ul>
       </li>
-       <li><a style="cursor:pointer;" href="{{ url('chpasser')}}">Change Password</a></li>
-       
+       <li><a style="cursor:pointer;" href="{{ url('changepass')}}">Change Password</a></li>
+       <!--<li><a style="cursor:pointer;" data-toggle="modal" data-target="#myModal2">Change Password</a></li>-->
       </ul>
       
     </div>
@@ -46,7 +45,7 @@
         </div>
  @endif
 
-  
+   
 
 
  @if (Session::has('error'))
@@ -130,35 +129,50 @@
       </div>
     </div>
   </div>   
-<div class="container" style="background-color:white;">
+<div class="container">
+ <div class="row">
+        <div class="col-md-12">
+        <div class="card card-container">
+                    
+            <p id="profile-name" class="profile-name-card" style="font-size:1.5em;color:#ff003f;font-family: 'Lato', sans-serif;">Change Password</p>
+            <div>&nbsp;</div>
+            @if(!Session::has('otpsent'))
+ <form method="post" action="{{route('sendOtp')}}" data-parsley-validate>
+    
   
-  <div class="text-center" style="font-family: 'Lato', sans-serif;font-size:1.7em;font-weight:700;margin-top:10px;color:#6d6d6d;"> Employee Information </div>
-  <p></p>            
-  <table class="table table-bordered table-hover">
-    <thead>
-      <tr>
-        <th>Username</th>
-        <th>Change Password</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-<tbody>
-@foreach ($employees as $employee)
-    
-      <tr>
-        <td><span style="font-size:1.2em;font-weight:700;">{{ $employee->username }}</span></td>
-        <td><button type="button" class="btn btn-danger change" data-toggle="modal" data-target="#chPassword" data-id="{{ $employee->username }}" >Change Password</button></td>
-        <td><form method="post" action="{{ route('deleteEe')}}"><button type="submit" class="btn btn-primary">Delete </button><input type="hidden" name="ename" value="{{ $employee->username }}"><input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <input type="hidden" name="_token" value="{{ Session::token() }}"></form></td>
-      </tr>
-    
-@endforeach
+    <div class="text-center">
+    <button type="submit" class="btn btn-primary">Send Otp</button>
+    </div>
+ <input type="hidden" name="_token" value="{{ csrf_token() }}">
+ <input type="hidden" name="_token" value="{{ Session::token() }}">
+  </form>
+  @endif
+     @if(Session::has('otpsent'))
+ <form method="post" action="{{route('verifyOtp')}}" data-parsley-validate>
+    <div class="form-group">
+      <label for="name" class="control-label">Enter Otp</label>
+            <input type="name" name="otp" data-parsley-equalto="#orgotp" class="form-control text-center" required="">
+            <a href="{{ url('sendotpagain')}}">Send Otp again</a>
+    </div>
+    <div class="form-group">
+      <label for="name" class="control-label">New Password</label>
+            <input type="password" name="password" class="form-control text-center" required="">
+    </div>
+  
+    <div class="text-center">
+    <button type="submit" class="btn btn-primary">Change</button>
+    </div>
+ <input type="hidden" name="_token" value="{{ csrf_token() }}">
+ <input type="hidden" name="_token" value="{{ Session::token() }}">
+  <input type="hidden" name="orgotp" id="orgotp" value="{{ Session::get('otpsent') }}">
+  <input type="hidden" name="name" value="{{ Session::get('er_name') }}">
+  
+  </form>
+  @endif
 
-  </tbody>
-  </table>
-
-  <div class="text-center">
+        </div>
+      </div>
 </div>
 </div>
-<script src="{{ asset('js/modalJS.js') }}"></script>
+
 @stop

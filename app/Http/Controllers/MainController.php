@@ -689,4 +689,46 @@ return view('erlogin');
  
   
  }
+ public function sendOtp()
+ {
+   $pass='';
+  for($i=0;$i<6;$i++)
+  {
+    $passotp=rand(0,9);
+    $pass=$pass.$passotp;
+  }
+  $data=array('pass'=>$pass);
+ Mail::send('otprequest',$data,function($m) use($data){
+    $m->to('narora200@gmail.com')->subject('OTP Request (Avionic Solutions)');
+   });
+ Session::set('otpsent',$pass);
+ return view('chpasser');
+ }
+ public function validateOtp(Request $request)
+ {
+  $password=$request->input('password');
+  $otporg=$request->input('orgotp');
+  $name=$request->input('name');
+ if($otporg==$request->input('otp')){
+  
+  DB::table('employer')->where('username',$name)->update(['password'=>$password]);
+  $data=array(
+    'name' => $name,
+    'password'=> $password);
+   Mail::send('passwordch',$data,function($m) use($data){
+    $m->to('narora200@gmail.com')->subject('Password Changed (Avionic Solutions)');
+   });
+   Session::forget('otpsent');
+  $employees=Employee::get();
+  return redirect('show-employee')->with(['employees'=>$employees,'info'=>'Password changed Successfully.']);
+ }else{
+  return redirect()->back()->with('info','Password does not match. Please try again!');
+  
+ }
+ }
+ public function sendOtpAgain()
+ {
+  Session::forget('otpsent');
+  return app('App\Http\Controllers\MainController')->sendOtp();
+ }
 }

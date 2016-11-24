@@ -31,7 +31,7 @@
           <li><a href="{{url('export')}}">Export to Excel</a></li>
         </ul>
       </li>
-       <li><a style="cursor:pointer;" data-toggle="modal" data-target="#myModal2">Change Password</a></li>
+       <li><a style="cursor:pointer;" href="{{ url('chpasser')}}">Change Password</a></li>
       </ul>
       
     </div>
