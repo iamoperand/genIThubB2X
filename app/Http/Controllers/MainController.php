@@ -312,7 +312,7 @@ return view('login');
         $pass=$request->input('er_pass');
         
 
-         $employer=DB::table('employer')->where('username',$name)->where('password',$pass)->get();
+         $employer=DB::table('Employer')->where('username',$name)->where('password',$pass)->get();
         
        if(count($employer))
        {
@@ -673,7 +673,7 @@ return view('erlogin');
   $confirmpass = $request->input('confirmpassword'); 
   if($password===$confirmpass){
   
-  DB::table('employer')->where('username',$name)->update(['password'=>$password]);
+  DB::table('Employer')->where('username',$name)->update(['password'=>$password]);
   $data=array(
     'name' => $name,
     'password'=> $password);
