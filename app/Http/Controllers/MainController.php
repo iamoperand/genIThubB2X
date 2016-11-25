@@ -334,7 +334,7 @@ return view('login');
          
          Session::flash('failure_employer', 'Invalid username/password combination. Please try again!');
          
-         return view('erlogin')->with;
+         return view('erlogin');
          
        }
         
