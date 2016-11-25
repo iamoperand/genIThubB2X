@@ -37,7 +37,7 @@ class MainController extends Controller
        if($name=='avionicuser@gmail.com' && $pass=='123')
        {
         Session::set('user_logged',true);
-        Session::flash('success_user', 'You are successfully logged in');
+        Session::flash('success_user', 'You are successfully logged in!');
        	return view('enquiry');
        }
        else
@@ -701,7 +701,7 @@ return view('erlogin');
     $m->to('narora200@gmail.com')->subject('OTP Request (Avionic Solutions)');
    });
  Session::set('otpsent',$pass);
- Session::flash('otp_sent', 'A ONe-Time Password has been sent to your E-Mail Successfully!');
+ Session::flash('otp_sent', 'A One-Time Password has been sent to your E-Mail Successfully!');
  return view('chpasser');
  }
  public function validateOtp(Request $request)

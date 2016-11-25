@@ -23,7 +23,7 @@
 	<script src="{{ asset('js/facebox_jquery.js') }}"></script>
 
 	<script src="{{ asset('js/parsley.min.js') }}"></script>
-
+	<script src="{{ asset('js/auto_load_users.js') }}"></script>
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet"> 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css">

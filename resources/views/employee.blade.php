@@ -15,7 +15,7 @@
             <strong>Success:</strong> {{Session::get('info_success')}}
         </div>
  @endif     
-<div class="container" style="background-color:white;">
+<div class="container" style="background-color:white;" id="users">
   
   <div class="text-center" style="font-family: 'Lato', sans-serif;font-size:1.7em;font-weight:700;margin-top:10px;color:#6d6d6d;"> Customer Information <span style="color:#020000;">(Temporary)</span> </div>
   <p></p>            

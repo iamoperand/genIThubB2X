@@ -15,6 +15,7 @@
 
 Route::group(['middleware' => ['web']], function(){
 });
+
 Route::get('/', function () {
     return view('login');
 });
@@ -142,4 +143,6 @@ Route::post('validate-otp',[
   ]);
 
 Route::get('sendotpagain','MainController@sendOtpAgain');
-
+Route::get('auto_load_users',function(){
+  return view('auto_load_users.blade.php');
+});
