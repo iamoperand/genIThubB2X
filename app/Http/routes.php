@@ -143,6 +143,5 @@ Route::post('validate-otp',[
   ]);
 
 Route::get('sendotpagain','MainController@sendOtpAgain');
-Route::get('auto_load_users',function(){
-  return view('auto_load_users.blade.php');
-});
+
+Route::get('chpasser','MainController@getchPassEr');

@@ -657,37 +657,7 @@ return view('erlogin');
 
  
 }
- public function chErPassword(Request $request)
- {
-  
-  $this->validate($request,[
-   'password' => 'required|max:255',
-   'otp' => 'required|max:6|min:6',
-   
-   ]);
-  $name=$request->input('ename');
-  $password=$request->input('password');
-  
-  $orgotp = $request->input('orgotp');
-  $otp = $request->input('otp'); 
-  if($orgotp===$otp){
-  
-  DB::table('Employer')->where('username',$name)->update(['password'=>$password]);
-  $data=array(
-    'name' => $name,
-    'password'=> $password);
-   Mail::send('passwordch',$data,function($m) use($data){
-    $m->to('narora200@gmail.com')->subject('Password Changed (Avionic Solutions)');
-   });
-
-  return redirect()->back()->with('info','Password changed successfully!!');
- }else{
-  return redirect()->back()->with('info','OTP does not match. Please try again!');
-  
- }
  
-  
- }
  public function sendOtp()
  {
    $pass='';
@@ -706,7 +676,11 @@ return view('erlogin');
  }
  public function validateOtp(Request $request)
  {
-
+  $this->validate($request,[
+   'password' => 'required|max:255',
+   'otp' => 'required|max:6|min:6',
+   
+   ]);
   $password=$request->input('password');
   $otporg=$request->input('orgotp');
   $name=$request->input('name');
@@ -733,4 +707,33 @@ return view('erlogin');
   Session::forget('otpsent');
   return app('App\Http\Controllers\MainController')->sendOtp();
  }
+ public function getchPassEr(){
+
+if(Session::has('admin_logged')){
+
+        if(Session::has('employer_logged')){
+        
+            return view('chpasser');
+
+
+        }
+        else{
+ Session::flash('employer_notlogged', 'You are not logged in as an Employer. Please login to continue!');
+
+return view('erlogin');
+                }
+
+        }else{
+          
+          Session::flash('admin_notlogged', 'You are not logged in as an office personnel. Please login to continue!');
+          return view('login');
+        }
+
+
+
+ }
+
+
+
+
 }
