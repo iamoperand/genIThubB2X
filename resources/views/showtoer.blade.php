@@ -31,7 +31,7 @@
           <li><a href="{{url('export')}}">Export to Excel</a></li>
         </ul>
       </li>
-       <li><a style="cursor:pointer;" href="{{ url('chpasser')}}">Change Password</a></li>
+       <li><a style="cursor:pointer;" href="{{ url('chpasser')}}">Change Your Password</a></li>
        
       </ul>
       
@@ -39,7 +39,7 @@
   </div>
 </nav>
 </div>
- @if (Session::has('info'))
+@if (Session::has('info'))
         <div class="alert alert-success fade in">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <strong>Success:</strong> {{Session::get('info')}}

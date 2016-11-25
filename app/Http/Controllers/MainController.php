@@ -318,13 +318,13 @@ return view('login');
        {
         
       
-        Session::flash('success_employer', 'You are successfully logged in');
+       
         $employer_logged = true;
         Session::set('employer_logged',$employer_logged);
         Session::set('er_name',$name);
         
         $users = DB::table('User')->paginate(7);
-        return redirect('employer')->with('users',$users);
+        return redirect('employer')->with('users',$users)->with('info','You are successfully logged in!');
         
         
        }
@@ -334,7 +334,7 @@ return view('login');
          
          Session::flash('failure_employer', 'Invalid username/password combination. Please try again!');
          
-         return view('erlogin');
+         return view('erlogin')->with;
          
        }
         
@@ -551,7 +551,7 @@ public function eeLogin(Request $request)
        {
         
       
-        Session::flash('success_employee', 'You are successfully logged in');
+        Session::flash('success_employee', 'You are successfully logged in!');
         $employee_logged = true;
         Session::set('employee_logged',$employee_logged);
         Session::set('ee_name',$name);
@@ -662,16 +662,15 @@ return view('erlogin');
   
   $this->validate($request,[
    'password' => 'required|max:255',
-   'confirmpassword' => 'required|max:255',
+   'otp' => 'required|max:6|min:6',
    
    ]);
   $name=$request->input('ename');
   $password=$request->input('password');
   
-  
-  $password=$request->input('password'); //verify new and confirm new password
-  $confirmpass = $request->input('confirmpassword'); 
-  if($password===$confirmpass){
+  $orgotp = $request->input('orgotp');
+  $otp = $request->input('otp'); 
+  if($orgotp===$otp){
   
   DB::table('Employer')->where('username',$name)->update(['password'=>$password]);
   $data=array(
@@ -683,7 +682,7 @@ return view('erlogin');
 
   return redirect()->back()->with('info','Password changed successfully!!');
  }else{
-  return redirect()->back()->with('info','Password does not match. Please try again!');
+  return redirect()->back()->with('info','OTP does not match. Please try again!');
   
  }
  
@@ -702,27 +701,30 @@ return view('erlogin');
     $m->to('narora200@gmail.com')->subject('OTP Request (Avionic Solutions)');
    });
  Session::set('otpsent',$pass);
+ Session::flash('otp_sent', 'A ONe-Time Password has been sent to your E-Mail Successfully!');
  return view('chpasser');
  }
  public function validateOtp(Request $request)
  {
+
   $password=$request->input('password');
   $otporg=$request->input('orgotp');
   $name=$request->input('name');
  if($otporg==$request->input('otp')){
   
-  DB::table('employer')->where('username',$name)->update(['password'=>$password]);
+  DB::table('Employer')->where('username',$name)->update(['password'=>$password]);
   $data=array(
     'name' => $name,
     'password'=> $password);
    Mail::send('passwordch',$data,function($m) use($data){
     $m->to('narora200@gmail.com')->subject('Password Changed (Avionic Solutions)');
    });
-   Session::forget('otpsent');
+   Session::forget('otpsent'); 
   $employees=Employee::get();
-  return redirect('show-employee')->with(['employees'=>$employees,'info'=>'Password changed Successfully.']);
+  
+  return redirect('show-employee')->with('employees',$employees)->with('info','Password changed successfully!!');
  }else{
-  return redirect()->back()->with('info','Password does not match. Please try again!');
+  return redirect()->back()->with('info','OTP does not match. Please try again!');
   
  }
  }

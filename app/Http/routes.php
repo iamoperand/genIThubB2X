@@ -85,7 +85,7 @@ Route::post('excelsheet-date',[
   ]);
 
 Route::get('display','MainController@getDisplay');
-
+});
  //Employee login 
 Route::post('employee',[
   'uses'=>'MainController@eeLogin',
@@ -140,6 +140,6 @@ Route::post('validate-otp',[
   'uses'=>'MainController@validateOtp',
   'as' => 'verifyOtp'
   ]);
+
 Route::get('sendotpagain','MainController@sendOtpAgain');
 
-});

@@ -30,7 +30,7 @@
           <li><a href="{{url('export')}}">Export to Excel</a></li>
         </ul>
       </li>
-       <li><a style="cursor:pointer;" href="{{ url('changepass')}}">Change Password</a></li>
+       <li><a style="cursor:pointer;" href="{{ url('changepass')}}">Change Your Password</a></li>
        <!--<li><a style="cursor:pointer;" data-toggle="modal" data-target="#myModal2">Change Password</a></li>-->
       </ul>
       
@@ -45,7 +45,12 @@
         </div>
  @endif
 
-   
+   @if (Session::has('otp_sent'))
+        <div class="alert alert-success fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success:</strong> {{Session::get('otp_sent')}}
+        </div>
+ @endif
 
 
  @if (Session::has('error'))
@@ -134,34 +139,44 @@
         <div class="col-md-12">
         <div class="card card-container">
                     
-            <p id="profile-name" class="profile-name-card" style="font-size:1.5em;color:#ff003f;font-family: 'Lato', sans-serif;">Change Password</p>
+            <p id="profile-name" class="profile-name-card" style="font-size:1.8em;color:#000;font-family: 'Lato', sans-serif;">Change Password</p>
             <div>&nbsp;</div>
+          <div>&nbsp;</div>
+  
             @if(!Session::has('otpsent'))
  <form method="post" action="{{route('sendOtp')}}" data-parsley-validate>
     
   
     <div class="text-center">
-    <button type="submit" class="btn btn-primary">Send Otp</button>
+    <button type="submit" class="btn btn-primary">Send OTP to E-Mail</button>
     </div>
  <input type="hidden" name="_token" value="{{ csrf_token() }}">
  <input type="hidden" name="_token" value="{{ Session::token() }}">
   </form>
   @endif
+   
+    
      @if(Session::has('otpsent'))
  <form method="post" action="{{route('verifyOtp')}}" data-parsley-validate>
-    <div class="form-group">
-      <label for="name" class="control-label">Enter Otp</label>
-            <input type="name" name="otp" data-parsley-equalto="#orgotp" class="form-control text-center" required="">
-            <a href="{{ url('sendotpagain')}}">Send Otp again</a>
+    <div class="form-group text-center">
+      <label for="name" class="control-label">Enter OTP</label>
+            <input type="name" name="otp" data-parsley-equalto="#orgotp" class="form-control text-center" required="" placeholder="Enter OTP">
+            
     </div>
-    <div class="form-group">
+    
+
+    <div class="form-group text-center">
       <label for="name" class="control-label">New Password</label>
-            <input type="password" name="password" class="form-control text-center" required="">
+            <input type="password" name="password" class="form-control text-center" required="" placeholder="Enter New Password">
     </div>
-  
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    
     <div class="text-center">
-    <button type="submit" class="btn btn-primary">Change</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="{{ url('sendotpagain')}}" class="btn btn-danger" >Send OTP again</a>
     </div>
+
  <input type="hidden" name="_token" value="{{ csrf_token() }}">
  <input type="hidden" name="_token" value="{{ Session::token() }}">
   <input type="hidden" name="orgotp" id="orgotp" value="{{ Session::get('otpsent') }}">

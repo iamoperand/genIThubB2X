@@ -1,11 +1,11 @@
 <html>
 <body>
-	Dear {{ $pass }}, 
-	You have changed your password successfully.<br>
+	Dear Employer, 
+	<br>
 
-	Your new password is <b></b>.
+	This is your one-time password <b>{{$pass}}</b>.
 	<br>
 	<br>
-	This email was sent automatically by avionicsolutions.com in response to change your password. This is done for your protection.
+	This email was sent automatically by avionicsolutions.com in response to a request to change your password.
 </body>
 </html>
