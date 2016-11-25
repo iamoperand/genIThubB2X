@@ -14,7 +14,7 @@
 
 
 Route::group(['middleware' => ['web']], function(){
-
+});
 Route::get('/', function () {
     return view('login');
 });
@@ -85,7 +85,7 @@ Route::post('excelsheet-date',[
   ]);
 
 Route::get('display','MainController@getDisplay');
-});
+
  //Employee login 
 Route::post('employee',[
   'uses'=>'MainController@eeLogin',
