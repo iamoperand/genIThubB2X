@@ -26,8 +26,8 @@
         <th>Purpose</th>
         <th>Name</th>
         <th>Phone Number</th>
-        <th>Start Time</th>
-        <th>End Time</th>
+        <th>Accepted</th>
+        <th>Finished</th>
       </tr>
     </thead>
 <tbody>

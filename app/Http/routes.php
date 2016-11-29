@@ -79,11 +79,6 @@ Route::post('excel', [
  'uses' =>'MainController@infoExcel',
   'as' => 'admin.info.excel'
   ]);
- //get date range for excel sheet
-Route::post('excelsheet-date',[
-   'uses' => 'MainController@getDate',
-   'as'=> 'excelDate'
-  ]);
 
 Route::get('display','MainController@getDisplay');
 
